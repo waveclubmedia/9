@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>Merch — WAVECLUBMEDIA</title>
+  <meta name="description" content="Официальный мерч WAVECLUBMEDIA. Худи, футболки, шопперы, кружки и аксессуары бренда.">
+  <style>
+    /* ─────────────────────────────────────────────
+       MERCH PAGE — standalone styles
+    ───────────────────────────────────────────── */
+
+    /* Reset any page-styles.css interference */
+    .merch-root * { box-sizing: border-box; }
+
+    /* ── HERO ── */
+    .merch-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 0 72px;
+      overflow: hidden;
+      background: #000;
+    }
+    .merch-hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 70% at 75% 40%, rgba(176,16,48,.09) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 50% at 20% 70%, rgba(176,16,48,.05) 0%, transparent 60%);
+    }
+    /* Large blurred WCM letters */
+    .merch-hero-letters {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -52%);
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(180px, 28vw, 380px);
+      font-weight: 800;
+      letter-spacing: -.05em;
+      color: rgba(255,255,255,.025);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+    .merch-hero-top {
+      position: relative; z-index: 2;
+      padding: calc(var(--nav) + 60px) 0 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .merch-eyebrow {
+      font-family: var(--fm);
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .merch-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--red);
+    }
+    .merch-hero-badge {
+      font-family: var(--fm);
+      font-size: .6rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      border: 1px solid var(--brd);
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+    .merch-hero-content {
+      position: relative; z-index: 2;
+      margin-top: auto;
+    }
+    .merch-hero-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(4rem, 13vw, 11rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: .92;
+      color: #fff;
+      margin-bottom: 32px;
+    }
+    .merch-hero-title em {
+      font-style: normal;
+      color: var(--red);
+      display: block;
+    }
+    .merch-hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .merch-hero-desc {
+      font-size: .9rem;
+      color: var(--sub);
+      line-height: 1.7;
+      max-width: 380px;
+    }
+    .merch-hero-stats {
+      display: flex;
+      gap: 40px;
+      flex-shrink: 0;
+    }
+    .mhs-item {
+      text-align: right;
+    }
+    .mhs-num {
+      font-family: 'Sora', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      display: block;
+      line-height: 1;
+    }
+    .mhs-label {
+      font-family: var(--fm);
+      font-size: .58rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-top: 4px;
+      display: block;
+    }
+    .merch-hero-scroll {
+      position: absolute;
+      bottom: 72px; right: 0;
+      writing-mode: vertical-rl;
+      font-family: var(--fm);
+      font-size: .58rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+    }
+    .merch-hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--dim), transparent);
+    }
+
+    /* ── TICKER ── */
+    .merch-ticker {
+      border-top: 1px solid var(--brd);
+      border-bottom: 1px solid var(--brd);
+      padding: 12px 0;
+      overflow: hidden;
+      background: var(--bg2);
+    }
+    .merch-ticker-track {
+      display: inline-flex;
+      animation: mtick 22s linear infinite;
+      white-space: nowrap;
+    }
+    .merch-ticker-track span {
+      font-family: var(--fm);
+      font-size: .65rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--sub);
+    }
+    .merch-ticker-track .t-red {
+      color: var(--red);
+      margin: 0 16px;
+    }
+    @keyframes mtick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── FILTER BAR ── */
+    .merch-filter {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--brd);
+      position: sticky;
+      top: var(--nav);
+      background: rgba(0,0,0,.92);
+      backdrop-filter: blur(20px);
+      z-index: 50;
+    }
+    .merch-filter-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .merch-filter-cats {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .mf-btn {
+      padding: 7px 18px;
+      background: transparent;
+      border: 1px solid var(--brd2);
+      color: var(--sub);
+      font-family: var(--fm);
+      font-size: .63rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: .25s;
+    }
+    .mf-btn:hover, .mf-btn.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+    .merch-count {
+      font-family: var(--fm);
+      font-size: .62rem;
+      letter-spacing: .1em;
+      color: var(--dim);
+      white-space: nowrap;
+    }
+    .merch-count span { color: var(--txt); }
+
+    /* ── PRODUCT GRID ── */
+    .merch-section {
+      padding: 80px 0 100px;
+      background: var(--bg);
+    }
+    .merch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    /* ── PRODUCT CARD ── */
+    .pcard {
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--brd);
+      transition: border-color .3s;
+    }
+    .pcard:hover { border-color: rgba(176,16,48,.4); }
+    .pcard.featured {
+      grid-column: span 2;
+    }
+
+    /* Image area */
+    .pcard-img {
+      position: relative;
+      aspect-ratio: 1;
+      background: var(--bg2);
+      overflow: hidden;
+    }
+    .pcard.featured .pcard-img {
+      aspect-ratio: 2 / 1;
+    }
+
+    /* ── PLACEHOLDER PHOTO ──────────────────────────────────────
+       Вот сюда ты ставишь свои фотки товаров.
+       Замени всё содержимое .pcard-img на один тег:
+       <img src="твоя-фотка.jpg" alt="Название" style="width:100%;height:100%;object-fit:cover;">
+    ──────────────────────────────────────────────────────────── */
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--dim);
+      user-select: none;
+    }
+    .photo-placeholder-icon {
+      width: 52px; height: 52px;
+      border: 1px dashed var(--brd2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-placeholder-icon svg { opacity: .4; }
+    .photo-placeholder-label {
+      font-family: var(--fm);
+      font-size: .6rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      opacity: .5;
+      text-align: center;
+      line-height: 1.6;
+    }
+    /* Hover shimmer on placeholder */
+    .pcard:hover .photo-placeholder {
+      background: rgba(176,16,48,.03);
+    }
+
+    /* Tag on image */
+    .pcard-tag {
+      position: absolute;
+      top: 16px; left: 16px;
+      font-family: var(--fm);
+      font-size: .56rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 12px;
+      z-index: 2;
+    }
+    .pcard-tag.new { background: var(--red); color: #fff; }
+    .pcard-tag.hot { background: rgba(176,16,48,.15); border: 1px solid rgba(176,16,48,.4); color: var(--red); }
+
+    /* Quick action */
+    .pcard-action {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 36px; height: 36px;
+      background: rgba(0,0,0,.7);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sub);
+      transition: .25s;
+      opacity: 0;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+    }
+    .pcard:hover .pcard-action { opacity: 1; }
+    .pcard-action:hover { background: var(--red); border-color: var(--red); color: #fff; }
+
+    /* Card body */
+    .pcard-body {
+      padding: 20px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .pcard-cat {
+      font-family: var(--fm);
+      font-size: .58rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .pcard-name {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      color: var(--txt);
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+    .pcard-featured-name {
+      font-size: 1.35rem;
+    }
+    .pcard-desc {
+      font-size: .8rem;
+      color: var(--sub);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+    .pcard-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--brd);
+    }
+    .pcard-price {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--txt);
+    }
+    .pcard-price .pold {
+      font-size: .75rem;
+      font-weight: 400;
+      color: var(--dim);
+      text-decoration: line-through;
+      margin-right: 6px;
+    }
+    .pcard-order {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      background: transparent;
+      border: 1px solid var(--brd2);
+      color: var(--sub);
+      font-family: var(--fm);
+      font-size: .62rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-radius: var(--r);
+      cursor: pointer;
+      transition: .25s;
+      text-decoration: none;
+    }
+    .pcard-order:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+    .pcard-order svg { flex-shrink: 0; }
+
+    /* ── FEATURED WIDE CARD LAYOUT ── */
+    .pcard.featured .pcard-body {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .pcard.featured .pcard-info { flex: 1; min-width: 200px; }
+    .pcard.featured .pcard-footer { flex-direction: column; align-items: flex-start; gap: 12px; padding-top: 0; border-top: none; border-left: 1px solid var(--brd); padding-left: 24px; }
+
+    /* ── ABOUT MERCH STRIP ── */
+    .merch-about {
+      padding: 80px 0;
+      background: var(--bg2);
+      border-top: 1px solid var(--brd);
+      border-bottom: 1px solid var(--brd);
+    }
+    .merch-about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .merch-about-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.05;
+      color: var(--txt);
+      margin-bottom: 20px;
+    }
+    .merch-about-title span { color: var(--red); }
+    .merch-about-text {
+      font-size: .92rem;
+      color: var(--sub);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .merch-about-points {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .map-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .86rem;
+      color: var(--sub);
+    }
+    .map-icon {
+      width: 34px; height: 34px;
+      background: rgba(176,16,48,.1);
+      border: 1px solid rgba(176,16,48,.25);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: .9rem;
+    }
+    /* Right side: 2×2 facts grid */
+    .merch-facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .mfact {
+      background: var(--bg3);
+      padding: 32px 28px;
+      border: 1px solid var(--brd);
+      transition: .25s;
+    }
+    .mfact:hover { background: var(--bg4); border-color: rgba(176,16,48,.2); }
+    .mfact-num {
+      font-family: 'Sora', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--red);
+      display: block;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .mfact-label {
+      font-family: var(--fm);
+      font-size: .65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    /* ── BOTTOM CTA ── */
+    .merch-cta {
+      padding: 96px 0;
+      background: var(--bg);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .merch-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(176,16,48,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .merch-cta-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: .95;
+      color: var(--txt);
+      margin-bottom: 20px;
+      position: relative; z-index: 1;
+    }
+    .merch-cta-title span { color: var(--red); }
+    .merch-cta-sub {
+      font-size: .92rem;
+      color: var(--sub);
+      line-height: 1.7;
+      max-width: 500px;
+      margin: 0 auto 36px;
+      position: relative; z-index: 1;
+    }
+    .merch-cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative; z-index: 1;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1000px){
+      .merch-grid { grid-template-columns: repeat(2,1fr); }
+      .pcard.featured { grid-column: span 2; }
+      .merch-about-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media(max-width:680px){
+      .merch-hero-title { font-size: clamp(3rem,16vw,6rem); }
+      .merch-grid { grid-template-columns: 1fr; }
+      .pcard.featured { grid-column: span 1; }
+      .pcard.featured .pcard-img { aspect-ratio: 1; }
+      .pcard.featured .pcard-body { flex-direction: column; }
+      .pcard.featured .pcard-footer { border-left: none; border-top: 1px solid var(--brd); padding-left: 0; padding-top: 14px; }
+      .merch-hero-stats { gap: 24px; }
+      .merch-hero-bottom { flex-direction: column; align-items: flex-start; gap: 28px; }
+      .mhs-item { text-align: left; }
+      .merch-facts { grid-template-columns: 1fr; }
+      .merch-hero-scroll { display: none; }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/Title%202.png" alt="WAVECLUBMEDIA" class="logo-wide">
+      <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM" class="logo-sq">
+    </a>
+    <div class="nav-links">
+      <div class="ndrop">
+        <button class="ndrop-btn">&#1059;&#1089;&#1083;&#1091;&#1075;&#1080; <span>&#9662;</span></button>
+        <div class="ndrop-menu">
+          <a href="index.html#services">&#1042;&#1089;&#1077; &#1091;&#1089;&#1083;&#1091;&#1075;&#1080;</a>
+          <a href="index.html#recording">&#1047;&#1072;&#1087;&#1080;&#1089;&#1100; &#1085;&#1072; &#1089;&#1090;&#1091;&#1076;&#1080;&#1080;</a>
+          <a href="index.html#mixing">&#1057;&#1074;&#1077;&#1076;&#1077;&#1085;&#1080;&#1077; &#1080; &#1084;&#1072;&#1089;&#1090;&#1077;&#1088;&#1080;&#1085;&#1075;</a>
+          <a href="index.html#beats">&#1057;&#1086;&#1079;&#1076;&#1072;&#1085;&#1080;&#1077; &#1073;&#1080;&#1090;&#1072;</a>
+          <a href="index.html#promotion">&#1055;&#1088;&#1086;&#1076;&#1074;&#1080;&#1078;&#1077;&#1085;&#1080;&#1077; &#1072;&#1088;&#1090;&#1080;&#1089;&#1090;&#1072;</a>
+          <a href="index.html#distribution">&#1044;&#1080;&#1089;&#1090;&#1088;&#1080;&#1073;&#1091;&#1094;&#1080;&#1103; &#1090;&#1088;&#1077;&#1082;&#1072;</a>
+          <a href="radio.html">&#1056;&#1086;&#1090;&#1072;&#1094;&#1080;&#1103; &#1085;&#1072; &#1088;&#1072;&#1076;&#1080;&#1086;</a>
+        </div>
+      </div>
+      <div class="ndrop">
+        <button class="ndrop-btn">&#1054; &#1085;&#1072;&#1089; <span>&#9662;</span></button>
+        <div class="ndrop-menu">
+          <a href="index.html#about">&#1054; &#1089;&#1090;&#1091;&#1076;&#1080;&#1080;</a>
+          <a href="index.html#equipment">&#1057;&#1090;&#1091;&#1076;&#1080;&#1103;</a>
+          <a href="index.html#credits">&#1057; &#1082;&#1077;&#1084; &#1088;&#1072;&#1073;&#1086;&#1090;&#1072;&#1083;&#1080;</a>
+          <a href="index.html#contacts">&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1099;</a>
+        </div>
+      </div>
+      <div class="ndrop">
+        <button class="ndrop-btn">&#1045;&#1097;&#1105; <span>&#9662;</span></button>
+        <div class="ndrop-menu">
+          <a href="index.html#faq">FAQ</a>
+          <a href="articles.html">&#1057;&#1090;&#1072;&#1090;&#1100;&#1080;</a>
+          <a href="radio.html">WAVECLUB RADIO</a>
+          <a href="index.html#reviews">&#1054;&#1090;&#1079;&#1099;&#1074;&#1099;</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="radio.html" class="live-badge"><span class="dot-pulse"></span>RADIO LIVE</a>
+      <button class="btn-coop" id="openCoop">&#1044;&#1083;&#1103; &#1089;&#1086;&#1090;&#1088;&#1091;&#1076;&#1085;&#1080;&#1095;&#1077;&#1089;&#1090;&#1074;&#1072;</button>
+      <button class="burger" id="burger" aria-label="&#1052;&#1077;&#1085;&#1102;"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mob-menu" id="mobMenu">
+    <div class="mob-menu-inner">
+      <div class="mob-group"><span class="mob-label">&#1059;&#1089;&#1083;&#1091;&#1075;&#1080;</span>
+        <a href="index.html#services" class="mob-link">&#1042;&#1089;&#1077; &#1091;&#1089;&#1083;&#1091;&#1075;&#1080;</a>
+        <a href="index.html#recording" class="mob-link">&#1047;&#1072;&#1087;&#1080;&#1089;&#1100; &#1085;&#1072; &#1089;&#1090;&#1091;&#1076;&#1080;&#1080;</a>
+        <a href="index.html#mixing" class="mob-link">&#1057;&#1074;&#1077;&#1076;&#1077;&#1085;&#1080;&#1077; &#1080; &#1084;&#1072;&#1089;&#1090;&#1077;&#1088;&#1080;&#1085;&#1075;</a>
+        <a href="radio.html" class="mob-link">&#1056;&#1086;&#1090;&#1072;&#1094;&#1080;&#1103; &#1085;&#1072; &#1088;&#1072;&#1076;&#1080;&#1086;</a>
+      </div>
+      <div class="mob-group"><span class="mob-label">&#1054; &#1085;&#1072;&#1089;</span>
+        <a href="index.html#about" class="mob-link">&#1054; &#1089;&#1090;&#1091;&#1076;&#1080;&#1080;</a>
+        <a href="articles.html" class="mob-link">&#1057;&#1090;&#1072;&#1090;&#1100;&#1080;</a>
+        <a href="radio.html" class="mob-link">WAVECLUB RADIO</a>
+        <a href="index.html#faq" class="mob-link">FAQ</a>
+        <a href="index.html#contacts" class="mob-link">&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1099;</a>
+      </div>
+      <div class="mob-socials">
+        <a href="https://t.me/waveclubmedia" target="_blank" class="mob-soc">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </a>
+        <a href="https://vk.me/waveclubmedia" target="_blank" class="mob-soc">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+  <g transform="scale(1.25) translate(-2.5 -2.5)">
+    <path d="M12.785 16.241h-.718s-1.584.086-2.98-1.18C7.567 13.64 6.19 10.9 6.19 10.9s-.075-.178.006-.266c.09-.099.334-.104.334-.104l1.718-.011s.162.022.28.098c.097.064.15.185.15.185s.278.623.646 1.188c.718 1.101 1.053 1.342 1.297 1.22.356-.178.249-1.574.249-1.574s.007-.507-.183-.732c-.147-.173-.425-.224-.549-.239-.101-.013.064-.248.278-.353.322-.158.889-.167 1.557-.161.52.004.67.034.872.08.485.112.467.456.435 1.199-.01.21-.02.457-.02.741 0 .079-.016.942.242 1.122.131.09.452.013 1.252-1.206.382-.579.669-1.263.669-1.263s.063-.12.16-.184c.099-.066.234-.046.234-.046l1.807-.011s.542-.067.63.158c.092.236-.206.786-.962 1.666-.711.83-1.055 1.136-1.026 1.406.02.2.247.382.69.736.92.737 1.167 1.122 1.224 1.212l.011.018c.45.654-.498.706-.498.706l-1.604.02s-.345.06-.802-.208c-.239-.14-.473-.37-.701-.595-.35-.345-.673-.664-.955-.586-.484.133-.469.968-.469.968s.003.18-.099.275c-.111.103-.329.122-.329.122z"/>
+  </g>
+</svg>
+        </a>
+        <a href="https://youtube.com/@waveclubmedia" target="_blank" class="mob-soc">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+      <button class="btn-coop mob-coop-btn" id="openCoopMob">&#1044;&#1083;&#1103; &#1089;&#1086;&#1090;&#1088;&#1091;&#1076;&#1085;&#1080;&#1095;&#1077;&#1089;&#1090;&#1074;&#1072;</button>
+    </div>
+  </div>
+</nav>
+<div class="merch-root">
+
+<!-- ── HERO ── -->
+<section class="merch-hero">
+  <div class="merch-hero-bg"></div>
+  <div class="merch-hero-letters">WCM</div>
+  <div class="merch-hero-scroll">scroll</div>
+
+  <div class="container">
+    <div class="merch-hero-top anim">
+      <div class="merch-eyebrow">Official Merch</div>
+      <div class="merch-hero-badge">WAVECLUBMEDIA &mdash; SS&rsquo;24</div>
+    </div>
+
+    <div class="merch-hero-content">
+      <div class="merch-hero-bottom">
+        <h1 class="merch-hero-title anim" data-delay="0.05">
+          WAVE<em>WEAR</em>
+        </h1>
+        <div>
+          <p class="merch-hero-desc anim" data-delay="0.12">
+            Официальный мерч WAVECLUBMEDIA. Минимализм, качество и дух независимой сцены&nbsp;&mdash; в каждой вещи.
+          </p>
+          <div class="merch-hero-stats anim" data-delay="0.18">
+            <div class="mhs-item">
+              <span class="mhs-num">6</span>
+              <span class="mhs-label">позиций</span>
+            </div>
+            <div class="mhs-item">
+              <span class="mhs-num">1</span>
+              <span class="mhs-label">бренд</span>
+            </div>
+            <div class="mhs-item">
+              <span class="mhs-num">&infin;</span>
+              <span class="mhs-label">стиль</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="merch-ticker">
+  <div class="merch-ticker-track">
+    <span>WAVECLUBMEDIA OFFICIAL MERCH</span><span class="t-red">&mdash;</span>
+    <span>WAVEWEAR SS&rsquo;24</span><span class="t-red">&mdash;</span>
+    <span>LIMITED DROPS</span><span class="t-red">&mdash;</span>
+    <span>MUSIC IS CULTURE</span><span class="t-red">&mdash;</span>
+    <span>INDEPENDENT LABEL</span><span class="t-red">&mdash;</span>
+    <span>KALININGRAD RUSSIA</span><span class="t-red">&mdash;</span>
+    <span>WAVECLUB RADIO 24/7</span><span class="t-red">&mdash;</span>
+    <span>WAVECLUBMEDIA OFFICIAL MERCH</span><span class="t-red">&mdash;</span>
+    <span>WAVEWEAR SS&rsquo;24</span><span class="t-red">&mdash;</span>
+    <span>LIMITED DROPS</span><span class="t-red">&mdash;</span>
+    <span>MUSIC IS CULTURE</span><span class="t-red">&mdash;</span>
+    <span>INDEPENDENT LABEL</span><span class="t-red">&mdash;</span>
+    <span>KALININGRAD RUSSIA</span><span class="t-red">&mdash;</span>
+    <span>WAVECLUB RADIO 24/7</span><span class="t-red">&mdash;</span>&nbsp;
+  </div>
+</div>
+
+<!-- ── FILTER BAR ── -->
+<div class="merch-filter">
+  <div class="container">
+    <div class="merch-filter-inner">
+      <div class="merch-filter-cats">
+        <button class="mf-btn active" data-filter="all">Всё</button>
+        <button class="mf-btn" data-filter="apparel">Одежда</button>
+        <button class="mf-btn" data-filter="accessories">Аксессуары</button>
+        <button class="mf-btn" data-filter="stationery">Канцелярия</button>
+      </div>
+      <div class="merch-count">Показано: <span id="countShown">6</span> из 6</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PRODUCT GRID ── -->
+<section class="merch-section">
+  <div class="container">
+    <div class="merch-grid" id="merchGrid">
+
+      <!-- HOODIE — Featured (wide) -->
+      <div class="pcard featured anim" data-cat="apparel" data-delay="0.05">
+        <div class="pcard-img">
+          <span class="pcard-tag new">New</span>
+          <button class="pcard-action" aria-label="Заказать">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <!-- ════════════════════════════════════════════════
+               ФОТО ХУДИ
+               Замени этот блок на:
+               <img src="hoodie.jpg" alt="Худи WCM" style="width:100%;height:100%;object-fit:cover;">
+          ════════════════════════════════════════════════ -->
+          <div class="photo-placeholder">
+            <div class="photo-placeholder-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="photo-placeholder-label">Фото худи<br>hoodie.jpg</div>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-info">
+            <div class="pcard-cat">Apparel</div>
+            <div class="pcard-name pcard-featured-name">WCM Hoodie<br>Oversize</div>
+            <div class="pcard-desc">Оверсайз-худи из плотного 380г хлопка. Принт с логотипом WAVECLUBMEDIA на груди, спине и рукаве. Доступен в чёрном и графитовом цвете. Размеры S &mdash; XXL.</div>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-price">4 990 &#8381;</div>
+            <a href="https://t.me/waveclubmedia_bot" target="_blank" class="pcard-order">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Заказать
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- T-SHIRT -->
+      <div class="pcard anim" data-cat="apparel" data-delay="0.1">
+        <div class="pcard-img">
+          <span class="pcard-tag hot">Hot</span>
+          <button class="pcard-action" aria-label="Заказать">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <!-- ════════════════════════════════════════════════
+               ФОТО ФУТБОЛКИ
+               Замени на: <img src="tshirt.jpg" alt="Футболка WCM" style="width:100%;height:100%;object-fit:cover;">
+          ════════════════════════════════════════════════ -->
+          <div class="photo-placeholder">
+            <div class="photo-placeholder-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="photo-placeholder-label">Фото футболки<br>tshirt.jpg</div>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Apparel</div>
+          <div class="pcard-name">WCM T-Shirt</div>
+          <div class="pcard-desc">Оверсайз-футболка из 100% хлопка. Минималистичный принт лого. Чёрный / белый. S &mdash; XL.</div>
+          <div class="pcard-footer">
+            <div class="pcard-price">2 490 &#8381;</div>
+            <a href="https://t.me/waveclubmedia_bot" target="_blank" class="pcard-order">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Заказать
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHOPPER -->
+      <div class="pcard anim" data-cat="accessories" data-delay="0.15">
+        <div class="pcard-img">
+          <span class="pcard-tag new">New</span>
+          <button class="pcard-action" aria-label="Заказать">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <!-- ════════════════════════════════════════════════
+               ФОТО ШОППЕРА
+               Замени на: <img src="shopper.jpg" alt="Шоппер WCM" style="width:100%;height:100%;object-fit:cover;">
+          ════════════════════════════════════════════════ -->
+          <div class="photo-placeholder">
+            <div class="photo-placeholder-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="photo-placeholder-label">Фото шоппера<br>shopper.jpg</div>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Accessories</div>
+          <div class="pcard-name">WCM Shopper</div>
+          <div class="pcard-desc">Холщовый шоппер с логотипом. Плотная ткань, длинные ручки. Чёрный / натуральный.</div>
+          <div class="pcard-footer">
+            <div class="pcard-price">990 &#8381;</div>
+            <a href="https://t.me/waveclubmedia_bot" target="_blank" class="pcard-order">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Заказать
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MUG -->
+      <div class="pcard anim" data-cat="accessories" data-delay="0.2">
+        <div class="pcard-img">
+          <button class="pcard-action" aria-label="Заказать">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <!-- ════════════════════════════════════════════════
+               ФОТО КРУЖКИ
+               Замени на: <img src="mug.jpg" alt="Кружка WCM" style="width:100%;height:100%;object-fit:cover;">
+          ════════════════════════════════════════════════ -->
+          <div class="photo-placeholder">
+            <div class="photo-placeholder-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="photo-placeholder-label">Фото кружки<br>mug.jpg</div>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Accessories</div>
+          <div class="pcard-name">WCM Mug</div>
+          <div class="pcard-desc">Керамическая кружка 330мл. Логотип WCM и надпись WAVECLUBMEDIA. Чёрная с красным принтом.</div>
+          <div class="pcard-footer">
+            <div class="pcard-price">890 &#8381;</div>
+            <a href="https://t.me/waveclubmedia_bot" target="_blank" class="pcard-order">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Заказать
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOTEBOOK -->
+      <div class="pcard anim" data-cat="stationery" data-delay="0.25">
+        <div class="pcard-img">
+          <button class="pcard-action" aria-label="Заказать">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <!-- ════════════════════════════════════════════════
+               ФОТО БЛОКНОТА
+               Замени на: <img src="notebook.jpg" alt="Блокнот WCM" style="width:100%;height:100%;object-fit:cover;">
+          ════════════════════════════════════════════════ -->
+          <div class="photo-placeholder">
+            <div class="photo-placeholder-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="photo-placeholder-label">Фото блокнота<br>notebook.jpg</div>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Stationery</div>
+          <div class="pcard-name">WCM Notebook</div>
+          <div class="pcard-desc">Блокнот A5 на 128 страниц. Плотная обложка с тиснением логотипа. Чёрный, нелинованный.</div>
+          <div class="pcard-footer">
+            <div class="pcard-price">790 &#8381;</div>
+            <a href="https://t.me/waveclubmedia_bot" target="_blank" class="pcard-order">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Заказать
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PEN -->
+      <div class="pcard anim" data-cat="stationery" data-delay="0.3">
+        <div class="pcard-img">
+          <button class="pcard-action" aria-label="Заказать">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <!-- ════════════════════════════════════════════════
+               ФОТО РУЧКИ
+               Замени на: <img src="pen.jpg" alt="Ручка WCM" style="width:100%;height:100%;object-fit:cover;">
+          ════════════════════════════════════════════════ -->
+          <div class="photo-placeholder">
+            <div class="photo-placeholder-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="photo-placeholder-label">Фото ручки<br>pen.jpg</div>
+          </div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Stationery</div>
+          <div class="pcard-name">WCM Pen</div>
+          <div class="pcard-desc">Металлическая шариковая ручка с гравировкой WAVECLUBMEDIA. Чёрная, матовый корпус.</div>
+          <div class="pcard-footer">
+            <div class="pcard-price">490 &#8381;</div>
+            <a href="https://t.me/waveclubmedia_bot" target="_blank" class="pcard-order">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Заказать
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /merch-grid -->
+  </div>
+</section>
+
+<!-- ── ABOUT MERCH ── -->
+<section class="merch-about">
+  <div class="container">
+    <div class="merch-about-grid">
+      <div class="anim">
+        <h2 class="merch-about-title">Мерч — это<br><span>часть культуры</span></h2>
+        <p class="merch-about-text">Каждая вещь WAVECLUBMEDIA — это не просто одежда или аксессуар. Это высказывание. Поддержка независимой сцены, которую ты носишь с собой.</p>
+        <div class="merch-about-points">
+          <div class="map-item"><div class="map-icon">&#127381;</div>Доставка по всей России</div>
+          <div class="map-item"><div class="map-icon">&#128218;</div>Качественные материалы, ограниченные тиражи</div>
+          <div class="map-item"><div class="map-icon">&#128172;</div>Заказ через Telegram — удобно и быстро</div>
+          <div class="map-item"><div class="map-icon">&#9878;&#65039;</div>Уникальный дизайн, разработанный командой WCM</div>
+        </div>
+      </div>
+      <div class="merch-facts anim" data-delay="0.15">
+        <div class="mfact"><span class="mfact-num">6</span><span class="mfact-label">Позиций в каталоге</span></div>
+        <div class="mfact"><span class="mfact-num">100%</span><span class="mfact-label">Качественные материалы</span></div>
+        <div class="mfact"><span class="mfact-num">1</span><span class="mfact-label">Уникальный бренд</span></div>
+        <div class="mfact"><span class="mfact-num">24h</span><span class="mfact-label">Ответ на заявку</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="merch-cta">
+  <div class="container">
+    <h2 class="merch-cta-title anim">ХОЧЕШЬ<br><span>НОСИТЬ WCM?</span></h2>
+    <p class="merch-cta-sub anim" data-delay="0.1">Напиши нам в Telegram — расскажем о наличии, размерах и доставке. Оплата онлайн, доставка по всей России.</p>
+    <div class="merch-cta-btns anim" data-delay="0.2">
+      <a href="https://t.me/waveclubmedia_bot" target="_blank" class="btn-red" style="text-decoration:none;font-size:.72rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Написать в Telegram
+      </a>
+      <a href="index.html" class="btn-outline-sm" style="text-decoration:none;">
+        &larr; На главную
+      </a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /merch-root -->
+<footer class="footer" id="contacts">
+  <div class="footer-top">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/Title%202.png" alt="WAVECLUBMEDIA" class="foot-logo">
+          <p class="foot-tagline">Music Brand &bull; Recording Studio &bull; Independent Label &bull; Radio Station</p>
+          <div class="foot-socs">
+            <a href="https://t.me/waveclubmedia" target="_blank" class="foot-soc" aria-label="Telegram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+  <g transform="scale(1.25) translate(-2.5 -2.5)">
+    <path d="M12.785 16.241h-.718s-1.584.086-2.98-1.18C7.567 13.64 6.19 10.9 6.19 10.9s-.075-.178.006-.266c.09-.099.334-.104.334-.104l1.718-.011s.162.022.28.098c.097.064.15.185.15.185s.278.623.646 1.188c.718 1.101 1.053 1.342 1.297 1.22.356-.178.249-1.574.249-1.574s.007-.507-.183-.732c-.147-.173-.425-.224-.549-.239-.101-.013.064-.248.278-.353.322-.158.889-.167 1.557-.161.52.004.67.034.872.08.485.112.467.456.435 1.199-.01.21-.02.457-.02.741 0 .079-.016.942.242 1.122.131.09.452.013 1.252-1.206.382-.579.669-1.263.669-1.263s.063-.12.16-.184c.099-.066.234-.046.234-.046l1.807-.011s.542-.067.63.158c.092.236-.206.786-.962 1.666-.711.83-1.055 1.136-1.026 1.406.02.2.247.382.69.736.92.737 1.167 1.122 1.224 1.212l.011.018c.45.654-.498.706-.498.706l-1.604.02s-.345.06-.802-.208c-.239-.14-.473-.37-.701-.595-.35-.345-.673-.664-.955-.586-.484.133-.469.968-.469.968s.003.18-.099.275c-.111.103-.329.122-.329.122z"/>
+  </g>
+</svg>
+            <a href="https://youtube.com/@waveclubmedia" target="_blank" class="foot-soc" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          </div>
+        </div>
+        <div class="foot-nav">
+          <h4>&#1059;&#1089;&#1083;&#1091;&#1075;&#1080;</h4>
+          <a href="index.html#recording">&#1047;&#1072;&#1087;&#1080;&#1089;&#1100; &#1085;&#1072; &#1089;&#1090;&#1091;&#1076;&#1080;&#1080;</a>
+          <a href="index.html#mixing">&#1057;&#1074;&#1077;&#1076;&#1077;&#1085;&#1080;&#1077; &#1080; &#1084;&#1072;&#1089;&#1090;&#1077;&#1088;&#1080;&#1085;&#1075;</a>
+          <a href="index.html#beats">&#1057;&#1086;&#1079;&#1076;&#1072;&#1085;&#1080;&#1077; &#1073;&#1080;&#1090;&#1072;</a>
+          <a href="index.html#promotion">&#1055;&#1088;&#1086;&#1076;&#1074;&#1080;&#1078;&#1077;&#1085;&#1080;&#1077; &#1072;&#1088;&#1090;&#1080;&#1089;&#1090;&#1072;</a>
+          <a href="index.html#distribution">&#1044;&#1080;&#1089;&#1090;&#1088;&#1080;&#1073;&#1091;&#1094;&#1080;&#1103; &#1090;&#1088;&#1077;&#1082;&#1072;</a>
+          <a href="radio.html">&#1056;&#1086;&#1090;&#1072;&#1094;&#1080;&#1103; &#1085;&#1072; &#1088;&#1072;&#1076;&#1080;&#1086;</a>
+        </div>
+        <div class="foot-nav">
+          <h4>&#1057;&#1072;&#1081;&#1090;</h4>
+          <a href="index.html">&#1043;&#1083;&#1072;&#1074;&#1085;&#1072;&#1103;</a>
+          <a href="articles.html">&#1057;&#1090;&#1072;&#1090;&#1100;&#1080;</a>
+          <a href="radio.html">WAVECLUB RADIO</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="index.html#reviews">&#1054;&#1090;&#1079;&#1099;&#1074;&#1099;</a>
+          <a href="index.html#contacts">&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1099;</a>
+        </div>
+        <div class="foot-contacts">
+          <h4>&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1099;</h4>
+          <p><span>&#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;</span><a href="tel:+79527910301">+7 (952) 791-03-01</a></p>
+          <p><span>&#1055;&#1086;&#1095;&#1090;&#1072;</span><a href="/cdn-cgi/l/email-protection#0960676f66497e687f6c6a657c6b646c6d6068276a6664"><span class="__cf_email__" data-cfemail="b5dcdbd3daf5c2d4c3d0d6d9c0d7d8d0d1dcd49bd6dad8">[email&#160;protected]</span></a></p>
+          <p><span>&#1040;&#1076;&#1088;&#1077;&#1089;</span><a href="index.html#map-section">&#1052;&#1086;&#1083;&#1086;&#1076;&#1105;&#1078;&#1085;&#1072;&#1103; &#1091;&#1083;., 13, &#1050;&#1072;&#1083;&#1080;&#1085;&#1080;&#1085;&#1075;&#1088;&#1072;&#1076;</a></p>
+          <p><span>&#1056;&#1077;&#1078;&#1080;&#1084;</span><span>&#1056;&#1072;&#1073;&#1086;&#1090;&#1072;&#1077;&#1084; 24/7</span></p>
+          <div class="foot-cta-btns" style="margin-top:16px">
+            <a href="https://t.me/waveclubmedia_bot" target="_blank" class="btn-red btn-sm" style="text-decoration:none">&#1054;&#1085;&#1083;&#1072;&#1081;&#1085;-&#1079;&#1072;&#1087;&#1080;&#1089;&#1100;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <div class="container">
+      <div class="foot-bar-inner">
+        <span>WAVECLUBMEDIA Ltd.&mdash; &copy; 2026 All rights reserved.</span>
+        <div class="foot-legal">
+          <a href="index.html#" onclick="return false">&#1055;&#1086;&#1083;&#1080;&#1090;&#1080;&#1082;&#1072; &#1082;&#1086;&#1085;&#1092;&#1080;&#1076;&#1077;&#1085;&#1094;&#1080;&#1072;&#1083;&#1100;&#1085;&#1086;&#1089;&#1090;&#1080;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer><script>
+(function(){
+  var nav=document.getElementById('navbar');
+  function run(){ if(nav) nav.classList.toggle('scrolled',window.scrollY>60); }
+  window.addEventListener('scroll',run,{passive:true}); run();
+  var b=document.getElementById('burger'), m=document.getElementById('mobMenu');
+  if(b&&m) b.addEventListener('click',function(){
+    var o=m.classList.toggle('open');
+    b.classList.toggle('open',o);
+    document.body.classList.toggle('locked',o);
+  });
+  var els=document.querySelectorAll('.anim,.anim-fade');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var d=parseFloat(e.target.dataset.delay||0)*1000;
+        setTimeout(function(){e.target.classList.add('in');},d);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){obs.observe(el);});
+  var c=document.getElementById('openCoop'),cm=document.getElementById('openCoopMob');
+  if(c) c.addEventListener('click',function(){ window.location='index.html#contacts'; });
+  if(cm) cm.addEventListener('click',function(){ window.location='index.html#contacts'; });
+})();
+</script>
+<script>
+(function(){
+  // Filter
+  var btns = document.querySelectorAll('.mf-btn');
+  var cards = document.querySelectorAll('.pcard[data-cat]');
+  var counter = document.getElementById('countShown');
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      var visible = 0;
+      cards.forEach(function(c){
+        if(f === 'all' || c.dataset.cat === f){
+          c.style.display = '';
+          visible++;
+        } else {
+          c.style.display = 'none';
+        }
+      });
+      if(counter) counter.textContent = visible;
+    });
+  });
+
+  // Quick action buttons → same as order link
+  document.querySelectorAll('.pcard-action').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      window.open('https://t.me/waveclubmedia_bot','_blank');
+    });
+  });
+})();
+</script>
+</body></html>
