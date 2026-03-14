@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WAVECLUBMEDIA — Music Brand | Recording Studio | Label | Radio</title>
+  <meta name="description" content="WAVECLUBMEDIA — профессиональная студия звукозаписи, независимый лейбл, музыкальный бренд и радиостанция в Калининграде.">
+  <link rel="icon" href="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-inner">
+    <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM" width="32" height="32" style="border-radius:50%;flex-shrink:0;">
+    <p>Мы используем <strong>cookie</strong> для улучшения работы сайта. <a href="#" id="cookiePolicyLink">Политика конфиденциальности</a></p>
+    <div class="cookie-btns">
+      <button id="cookieAccept" class="cbtn-ok">Принять все</button>
+      <button id="cookieDecline" class="cbtn-no">Только необходимые</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-wrap">
+    <a href="#hero" class="nav-logo">
+      <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/Title%202.png" alt="WAVECLUBMEDIA" class="logo-wide">
+      <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM" class="logo-sq">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <div class="ndrop">
+        <button class="ndrop-btn">Услуги <span>&#9662;</span></button>
+        <div class="ndrop-menu">
+          <a href="#services">Все услуги</a>
+          <a href="#recording">Запись на студии</a>
+          <a href="#mixing">Сведение и мастеринг</a>
+          <a href="#beats">Создание бита</a>
+          <a href="#ghostwriting">Текст на заказ</a>
+          <a href="#promotion">Продвижение артиста</a>
+          <a href="#distribution">Дистрибуция трека</a>
+          <a href="#radio-section">Ротация на радио</a>
+        </div>
+      </div>
+      <div class="ndrop">
+        <button class="ndrop-btn">О нас <span>&#9662;</span></button>
+        <div class="ndrop-menu">
+          <a href="#about">О студии</a>
+          <a href="#equipment">Студия и оборудование</a>
+          <a href="#credits">С кем работали</a>
+          <a href="#contacts">Контакты</a>
+        </div>
+      </div>
+      <div class="ndrop">
+        <button class="ndrop-btn">Ещё <span>&#9662;</span></button>
+        <div class="ndrop-menu">
+          <a href="#faq">FAQ</a>
+          <a href="#pricing">Цены</a>
+          <a href="#articles">Статьи</a>
+          <a href="#reviews">Отзывы</a>
+<a href="merch.html">МЕРЧ</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="live-badge" id="liveRadioBadge"><span class="dot-pulse"></span>RADIO LIVE</div>
+      <button class="btn-coop" id="openCoop">Для сотрудничества</button>
+      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mob-menu" id="mobMenu">
+    <div class="mob-menu-inner">
+      <div class="mob-group"><span class="mob-label">Услуги</span>
+        <a href="#services" class="mob-link">Все услуги</a>
+        <a href="#recording" class="mob-link">Запись на студии</a>
+        <a href="#mixing" class="mob-link">Сведение и мастеринг</a>
+        <a href="#beats" class="mob-link">Создание бита</a>
+        <a href="#ghostwriting" class="mob-link">Текст на заказ</a>
+        <a href="#promotion" class="mob-link">Продвижение артиста</a>
+        <a href="#distribution" class="mob-link">Дистрибуция трека</a>
+        <a href="#radio-section" class="mob-link">Ротация на радио</a>
+      </div>
+      <div class="mob-group"><span class="mob-label">О нас</span>
+        <a href="#about" class="mob-link">О студии</a>
+        <a href="#equipment" class="mob-link">Студия</a>
+        <a href="#credits" class="mob-link">С кем работали</a>
+        <a href="#faq" class="mob-link">FAQ</a>
+        <a href="#reviews" class="mob-link">Отзывы</a>
+        <a href="#contacts" class="mob-link">Контакты</a>
+	<a href="merch.html" class="mob-link">МЕРЧ</a>
+      </div>
+      <div class="mob-socials">
+        <a href="https://t.me/waveclubmedia" target="_blank" class="mob-soc">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </a>
+        <a href="https://vk.me/waveclubmedia" target="_blank" class="mob-soc">
+       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+  <g transform="scale(1.25) translate(-2.5 -2.5)">
+    <path d="M12.785 16.241h-.718s-1.584.086-2.98-1.18C7.567 13.64 6.19 10.9 6.19 10.9s-.075-.178.006-.266c.09-.099.334-.104.334-.104l1.718-.011s.162.022.28.098c.097.064.15.185.15.185s.278.623.646 1.188c.718 1.101 1.053 1.342 1.297 1.22.356-.178.249-1.574.249-1.574s.007-.507-.183-.732c-.147-.173-.425-.224-.549-.239-.101-.013.064-.248.278-.353.322-.158.889-.167 1.557-.161.52.004.67.034.872.08.485.112.467.456.435 1.199-.01.21-.02.457-.02.741 0 .079-.016.942.242 1.122.131.09.452.013 1.252-1.206.382-.579.669-1.263.669-1.263s.063-.12.16-.184c.099-.066.234-.046.234-.046l1.807-.011s.542-.067.63.158c.092.236-.206.786-.962 1.666-.711.83-1.055 1.136-1.026 1.406.02.2.247.382.69.736.92.737 1.167 1.122 1.224 1.212l.011.018c.45.654-.498.706-.498.706l-1.604.02s-.345.06-.802-.208c-.239-.14-.473-.37-.701-.595-.35-.345-.673-.664-.955-.586-.484.133-.469.968-.469.968s.003.18-.099.275c-.111.103-.329.122-.329.122z"/>
+  </g>
+</svg>
+        </a>
+        <a href="https://youtube.com/@waveclubmedia" target="_blank" class="mob-soc">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+      <button class="btn-coop mob-coop-btn" id="openCoopMob">Для сотрудничества</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="333.gif" alt="Studio" class="hero-img">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">WCM / MUSIC BRAND / SINCE 2019</div>
+    <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/Title%202.png" alt="WAVECLUBMEDIA" class="hero-logo-img">
+    <p class="hero-sub">Music Brand <span class="sep">&bull;</span> Recording Studio <span class="sep">&bull;</span> Independent Label <span class="sep">&bull;</span> Radio Station</p>
+    <div class="hero-cta">
+      <button class="btn-red" id="heroBook">Забронировать время</button>
+      <a href="#about" class="btn-outline-sm">Узнать больше</a>
+    </div>
+    <div class="hero-socs">
+      <a href="https://t.me/waveclubmedia" target="_blank" class="hs"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <a href="https://vk.me/waveclubmedia" target="_blank" class="hs"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+  <g transform="scale(1.25) translate(-2.5 -2.5)">
+    <path d="M12.785 16.241h-.718s-1.584.086-2.98-1.18C7.567 13.64 6.19 10.9 6.19 10.9s-.075-.178.006-.266c.09-.099.334-.104.334-.104l1.718-.011s.162.022.28.098c.097.064.15.185.15.185s.278.623.646 1.188c.718 1.101 1.053 1.342 1.297 1.22.356-.178.249-1.574.249-1.574s.007-.507-.183-.732c-.147-.173-.425-.224-.549-.239-.101-.013.064-.248.278-.353.322-.158.889-.167 1.557-.161.52.004.67.034.872.08.485.112.467.456.435 1.199-.01.21-.02.457-.02.741 0 .079-.016.942.242 1.122.131.09.452.013 1.252-1.206.382-.579.669-1.263.669-1.263s.063-.12.16-.184c.099-.066.234-.046.234-.046l1.807-.011s.542-.067.63.158c.092.236-.206.786-.962 1.666-.711.83-1.055 1.136-1.026 1.406.02.2.247.382.69.736.92.737 1.167 1.122 1.224 1.212l.011.018c.45.654-.498.706-.498.706l-1.604.02s-.345.06-.802-.208c-.239-.14-.473-.37-.701-.595-.35-.345-.673-.664-.955-.586-.484.133-.469.968-.469.968s.003.18-.099.275c-.111.103-.329.122-.329.122z"/>
+  </g>
+</svg>
+      <a href="https://youtube.com/@waveclubmedia" target="_blank" class="hs"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>scroll</span><div class="scroll-line"><div class="scroll-dot"></div></div></div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>CREDITS: TAODO &bull; HEAVYWINTER &bull; MU4O &bull; RUS SBC &bull; CAWEED &bull; MIRALI &bull; MIKE GUL &bull; LIL PESOCHEK &bull; SASHA RJ &bull; RAGEKAWAI &bull; SKUM1KKK &bull; RUFAN &bull;&nbsp;</span>
+    <span aria-hidden="true">CREDITS: TAODO &bull; HEAVYWINTER &bull; MU4O &bull; RUS SBC &bull; CAWEED &bull; MIRALI &bull; MIKE GUL &bull; LIL PESOCHEK &bull; SASHA RJ &bull; RAGEKAWAI &bull; SKUM1KKK &bull; RUFAN &bull;&nbsp;</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section bg-dark" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left">
+        <span class="stag">О студии / Lp #id: 001</span>
+        <h2 class="stitle">WAVECLUBMEDIA</h2>
+        <p class="sdesc">Мы — это больше чем студия. <strong>WAVECLUBMEDIA</strong> — музыкальный бренд, объединяющий профессиональную студию звукозаписи, независимый лейбл и собственную радиостанцию.</p>
+        <p class="sdesc">Наша команда работает с артистами от записи первого трека до полноценного релиза на всех стриминговых площадках. Мы создаём звучание, которое слышно.</p>
+        <div class="stats-row">
+          <div class="stat-item"><span class="stat-n" data-count="50">0</span><span class="stat-n">+</span><span class="stat-l">Артистов</span></div>
+          <div class="stat-item"><span class="stat-n" data-count="200">0</span><span class="stat-n">+</span><span class="stat-l">Треков записано</span></div>
+          <div class="stat-item"><span class="stat-n">24</span><span class="stat-n">/7</span><span class="stat-l">В эфире</span></div>
+        </div>
+        <button class="btn-red" id="aboutBook">Забронировать время</button>
+      </div>
+      <div class="about-right">
+        <div class="about-img-main"><img src="2.jpg" alt="Студия"></div>
+        <div class="about-img-float"><img src="4.png" alt="Cтудия"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="section bg-black" id="steps">
+  <div class="container">
+    <div class="sec-head">
+      <span class="stag">Как это работает / Lp #id: 002</span>
+      <h2 class="stitle">ПУТЬ К ХИТУ</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num-bg">01</div><span class="step-type">Recording</span><h3 class="step-title">ЗАПИСЬ ХИТА</h3><p class="step-desc">Запишись в студии WAVECLUBMEDIA — подготовь текст и бит заранее. Профессиональный звукорежиссёр и топовое оборудование ждут тебя.</p><a href="#recording" class="step-link">подробнее &rarr;</a></div>
+      <div class="step-card"><div class="step-num-bg">02</div><span class="step-type">Mixing</span><h3 class="step-title">СВЕДЕНИЕ И МАСТЕРИНГ</h3><p class="step-desc">Сведение и мастеринг на студии или дистанционно. Отправь файлы проекта — получи профессиональный результат мирового уровня.</p><a href="#mixing" class="step-link">подробнее &rarr;</a></div>
+      <div class="step-card"><div class="step-num-bg">03</div><span class="step-type">Release</span><h3 class="step-title">РЕЛИЗ И ПРОДВИЖЕНИЕ</h3><p class="step-desc">Дистрибуция на все платформы, продвижение, таргет и ротация на нашем радио — полный цикл от записи до успеха.</p><a href="#distribution" class="step-link">подробнее &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section bg-dark" id="equipment">
+  <div class="container">
+    <div class="sec-head">
+      <span class="stag">Студия / Lp #id: 003</span>
+      <h2 class="stitle">НАША СТУДИЯ</h2>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-item gal-big"><img src="4.jpg"Микшер"><div class="gal-cap">Микшерный пульт</div></div>
+      <div class="gal-item"><img src="5.jpg"Кабина"><div class="gal-cap">Вокальная кабина</div></div>
+      <div class="gal-item"><img src="8.jpg" alt="Мониторинг"><div class="gal-cap">Мониторинг</div></div>
+      <div class="gal-item gal-wide"><img src="6.jpg" alt="Контрольная комната"><div class="gal-cap">Контрольная комната</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section bg-black" id="services">
+  <div class="container">
+    <div class="sec-head" id="pricing">
+      <span class="stag">Услуги и цены / Lp #id: 004</span>
+      <h2 class="stitle">УСЛУГИ И ЦЕНЫ</h2>
+      <p class="ssub">Запись, сведение, мастеринг &mdash; в любой комбинации</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card" id="recording">
+        <div class="svc-top"><span class="svc-type">Recording</span><span class="svc-code">WCM_01 /</span></div>
+        <h3 class="svc-name">Запись на студии</h3>
+        <div class="svc-price">от <strong>1 500 &#8381;</strong> <span class="svc-unit">/ час</span></div>
+        <p class="svc-desc">Студийная сессия с профессиональным звукорежиссёром. Запись вокала, помощь в работе, детальная проработка трека до финального звучания.</p>
+        <div class="svc-btns">
+          <button class="btn-red btn-sm" data-service="Запись на студии">Заказать</button>
+          <button class="btn-ghost btn-sm" data-detail="recording">Подробнее</button>
+        </div>
+      </div>
+      <div class="svc-card svc-accent" id="mixing">
+        <div class="svc-top"><span class="svc-type">Mixing</span><span class="svc-code">WCM_02 /</span></div>
+        <h3 class="svc-name">Сведение и мастеринг</h3>
+        <div class="svc-price">от <strong>7 990 &#8381;</strong> <span class="svc-unit">/ трек</span></div>
+        <p class="svc-desc">Полноценное сведение дорожек, auto-tune, частотная и динамическая обработка, профессиональный мастеринг финального материала.</p>
+        <div class="svc-btns">
+          <button class="btn-red btn-sm" data-service="Сведение и мастеринг">Заказать</button>
+          <button class="btn-ghost btn-sm" data-detail="mixing">Подробнее</button>
+        </div>
+      </div>
+      <div class="svc-card" id="beats">
+        <div class="svc-top"><span class="svc-type">Production</span><span class="svc-code">WCM_03 /</span></div>
+        <h3 class="svc-name">Создание бита</h3>
+        <div class="svc-price">от <strong>4 990 &#8381;</strong> <span class="svc-unit">/ бит</span></div>
+        <p class="svc-desc">Профессиональный бит под твой стиль. Любой жанр, любые референсы &mdash; от trap до R&amp;B и drill. До 3 итераций правок.</p>
+        <div class="svc-btns">
+          <button class="btn-red btn-sm" data-service="Создание бита">Заказать</button>
+          <button class="btn-ghost btn-sm" data-detail="beats">Подробнее</button>
+        </div>
+      </div>
+      <div class="svc-card" id="ghostwriting">
+        <div class="svc-top"><span class="svc-type">Writing</span><span class="svc-code">WCM_04 /</span></div>
+        <h3 class="svc-name">Текст на заказ</h3>
+        <div class="svc-price">от <strong>9 990 &#8381;</strong> <span class="svc-unit">/ трек</span></div>
+        <p class="svc-desc">Команда гострайтеров создаст текст под твой стиль. Куплеты, припевы, бридж &mdash; любой формат с правками и демо-записью.</p>
+        <div class="svc-btns">
+          <button class="btn-red btn-sm" data-service="Текст на заказ">Заказать</button>
+          <button class="btn-ghost btn-sm" data-detail="writing">Подробнее</button>
+        </div>
+      </div>
+      <div class="svc-card" id="promotion">
+        <div class="svc-top"><span class="svc-type">Promotion</span><span class="svc-code">WCM_05 /</span></div>
+        <h3 class="svc-name">Продвижение артиста</h3>
+        <div class="svc-price">от <strong>14 990 &#8381;</strong> <span class="svc-unit">/ месяц</span></div>
+        <p class="svc-desc">Таргетированная реклама, поиск аудитории, аналитика, личный менеджер. Живые прослушивания и рост подписчиков.</p>
+        <div class="svc-btns">
+          <button class="btn-red btn-sm" data-service="Продвижение артиста">Заказать</button>
+          <button class="btn-ghost btn-sm" data-detail="promo">Подробнее</button>
+        </div>
+      </div>
+      <div class="svc-card" id="distribution">
+        <div class="svc-top"><span class="svc-type">Distribution</span><span class="svc-code">WCM_06 /</span></div>
+        <h3 class="svc-name">Дистрибуция трека</h3>
+        <div class="svc-price">от <strong>1 990 &#8381;</strong> <span class="svc-unit">/ релиз</span></div>
+        <p class="svc-desc">Spotify, Apple Music, ВК Музыка, Яндекс Музыка и 100+ платформ. Официально и быстро &mdash; 5&ndash;14 рабочих дней.</p>
+        <div class="svc-btns">
+          <button class="btn-red btn-sm" data-service="Дистрибуция трека">Заказать</button>
+          <button class="btn-ghost btn-sm" data-detail="dist">Подробнее</button>
+        </div>
+      </div>
+      <div class="svc-card svc-radio">
+        <div class="svc-top"><span class="svc-type">Radio</span><span class="svc-code">WCM_07 /</span></div>
+        <h3 class="svc-name">Ротация на радио</h3>
+        <div class="svc-price">от <strong>4 990 &#8381;</strong> <span class="svc-unit">/ неделя</span></div>
+        <p class="svc-desc">Эксклюзивная ротация трека на WAVECLUB RADIO. Охвати свою аудиторию через прямой эфир нашего лейбла 24/7.</p>
+        <div class="svc-btns">
+          <button class="btn-red btn-sm" data-service="Ротация на радио">Заказать</button>
+          <button class="btn-ghost btn-sm" data-detail="radio">Подробнее</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELEASES -->
+<section class="section bg-dark" id="credits">
+  <div class="container">
+    <div class="sec-head">
+      <span class="stag">Релизы / Lp #id: 005</span>
+      <h2 class="stitle">РЕЛИЗЫ ЛЕЙБЛА</h2>
+      <p class="ssub">Часть синглов и альбомов, записанных при участии WAVECLUBMEDIA</p>
+    </div>
+    <div class="rel-grid">
+      <div class="rel-item"><div class="rel-cover"> <img src="nedoma.jpg" alt="heavywinter - nedoma"> </div><p class="release-title">heavywinter &mdash; Не Дома</p></div>
+      <div class="rel-item"><div class="rel-cover"> <img src="bless.jpg" alt="taodo - bless"> </div><p class="release-title">Taodo &mdash; bless (ft. heavywinter)</p></div>
+      <div class="rel-item"><div class="rel-cover"> <img src="muse.jpg" alt="sasharj - muse"> </div><p class="release-title">SashaRj &mdash; Muse (ft. skum1kkk)</p></div>
+      <div class="rel-item"><div class="rel-cover"> <img src="muco.jpg" alt="mu40 - я и ты"> </div><p class="release-title">MU40 &mdash; Я и Ты</p></div>
+      <div class="rel-item"><div class="rel-cover"> <img src="svet.jpg" alt="ragekawai - дайте света"> </div><p class="release-title">ragekawai &mdash; Дайте Света</p></div>
+      <div class="rel-item"><div class="rel-cover"> <img src="cava.jpg" alt="caweed - Scalpel Plane"> </div><p class="release-title">CAWEED &mdash; Scalpel Plane (ft. skum1kkk)</p></div>
+      <div class="rel-item"><div class="rel-cover"> <img src="pecal.jpg" alt="sasha rj - осенняя печаль"> </div><p class="release-title">SashaRj &mdash; Осенняя Печаль</p></div>
+      <div class="rel-item"><div class="rel-cover"> <img src="pesok.jpg" alt="lil pesochek - никто не найдет"> </div><p class="release-title">Lil Pesochek &mdash; Никто не найдет</p></div>
+    </div>
+    <p class="rel-note">И многие другие...</p>
+  </div>
+</section>
+
+<!-- RADIO -->
+<section class="section bg-black radio-bg" id="radio-section">
+  <div class="container">
+    <div class="radio-grid">
+      <div class="radio-left">
+        <span class="stag">Радио / Lp #id: 006</span>
+        <h2 class="stitle">WAVECLUB RADIO</h2>
+        <p class="sdesc">Слушай нашу радиостанцию 24/7 — новые треки, эксклюзивные релизы лейбла и лучшая музыка независимых артистов из Калининграда и со всего мира.</p>
+        <div class="radio-facts">
+          <div class="rfact"><span>&#128225;</span><span>Прямой эфир 24/7</span></div>
+          <div class="rfact"><span>&#127925;</span><span>Эксклюзивные треки лейбла</span></div>
+          <div class="rfact"><span>&#127908;</span><span>Ротация твоего трека</span></div>
+        </div>
+        <div class="radio-cta-row">
+          <button class="btn-red" id="radioOrderBtn">Заказать ротацию</button>
+          <a href="https://t.me/waveclubmedia_bot" target="_blank" class="btn-tg">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Онлайн-запись
+          </a>
+        </div>
+      </div>
+      <div class="radio-player-wrap">
+        <div class="radio-player">
+          <div class="rp-logo"><img src="3.png" alt="WCM" width="60" height="60"></div>
+          <div class="rp-info">
+            <div class="rp-live"><span class="dot-pulse"></span>LIVE</div>
+            <div class="rp-name">WAVECLUB RADIO</div>
+            <div class="rp-track" id="rTrack">В эфире: загрузка...</div>
+          </div>
+          <div class="rp-controls">
+            <a href="radio.html" class="rp-play" id="rPlay" aria-label="Открыть радио">
+  <svg id="rPlayIco" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M8 5v14l11-7z"/>
+  </svg>
+</a>
+            <div class="rp-vol">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+              <input type="range" id="rVol" min="0" max="100" value="70" class="vol-range">
+            </div>
+          </div>
+          <div class="rp-bars" id="rBars">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="section bg-dark" id="articles">
+  <div class="container">
+    <div class="sec-head">
+      <span class="stag">Блог / Lp #id: 007</span>
+      <h2 class="stitle">СТАТЬИ ОТ WCM</h2>
+    </div>
+    <div class="art-grid">
+      <article class="art-card"><div class="art-img"><img src="9.jpg" alt="Запись"><span class="art-type">Article</span></div><div class="art-body"><span class="art-date">16 янв 2026</span><h3>Как подготовиться к записи в студии?</h3><p>Всё что нужно знать перед первой сессией — от подготовки текста до правильного настроя.</p><a href="article-recording.html" class="art-link">читать &rarr;</a></div></article>
+      <article class="art-card"><div class="art-img"><img src="10.jpg" alt="Сведение"><span class="art-type">Mixing</span></div><div class="art-body"><span class="art-date">25 мая 2025</span><h3>Сведение и мастеринг: в чём разница?</h3><p>Разбираем ключевые этапы постпродакшна и почему они критически важны для звучания.</p><a href="article-mixing.html" class="art-link">читать &rarr;</a></div></article>
+      <article class="art-card"><div class="art-img"><img src="11.jpg" alt="Продвижение"><span class="art-type">Promotion</span></div><div class="art-body"><span class="art-date">09 марта 2026</span><h3>Как продвигать трек в 2026 году?</h3><p>Актуальные методы: от алгоритмов стриминга до таргетированной рекламы.</p><a href="article-promo.html" class="art-link">читать &rarr;</a></div></article>
+      <article class="art-card"><div class="art-img"><img src="12.jpg" alt="Лейбл"><span class="art-type">Label</span></div><div class="art-body"><span class="art-date">27 июн 2024</span><h3>Независимый лейбл: стоит ли подписываться?</h3><p>Плюсы и минусы. Что предлагает WAVECLUBMEDIA своим артистам.</p><a href="article-label.html" class="art-link">читать &rarr;</a></div></article>
+    </div>
+    <div style="text-align:center;margin-top:40px;"><a href="articles.html" class="btn-outline-lg">Все статьи</a></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section bg-black" id="reviews">
+  <div class="container">
+    <div class="sec-head">
+      <span class="stag">Отзывы / Lp #id: 008</span>
+      <h2 class="stitle">ОТЗЫВЫ АРТИСТОВ</h2>
+    </div>
+    <div class="rev-wrap">
+      <div class="rev-track" id="revTrack">
+        <div class="rev-card"><div class="rev-q">&ldquo;</div><p class="rev-txt">Работал с командой WCM над своим дебютным альбомом. Профессионализм на высшем уровне &mdash; звук получился именно таким, каким я его слышал в голове.</p><div class="rev-author"><div class="rev-ava">R</div><div><strong>ragekawai</strong><span>Исполнитель</span></div></div></div>
+        <div class="rev-card"><div class="rev-q">&ldquo;</div><p class="rev-txt">Сведение получилось на уровне мировых стандартов. Очень доволен результатом &mdash; трек сразу попал в ротацию на нескольких площадках.</p><div class="rev-author"><div class="rev-ava">T</div><div><strong>Taodo</strong><span>Продюсер</span></div></div></div>
+        <div class="rev-card"><div class="rev-q">&ldquo;</div><p class="rev-txt">Записал уже несколько треков в студии WCM. Атмосфера творческая, оборудование топовое. Буду возвращаться снова и снова!</p><div class="rev-author"><div class="rev-ava">H</div><div><strong>heavywinter</strong><span>Рэпер</span></div></div></div>
+        <div class="rev-card"><div class="rev-q">&ldquo;</div><p class="rev-txt">Продвижение через WCM принесло реальные результаты &mdash; прослушивания выросли в несколько раз за месяц. Рекомендую всем!</p><div class="rev-author"><div class="rev-ava">LP</div><div><strong>Lil Peshochek</strong><span>Певица</span></div></div></div>
+      </div>
+    </div>
+    <div class="rev-controls">
+      <button class="rev-arr" id="revPrev">&larr;</button>
+      <div class="rev-dots" id="revDots"></div>
+      <button class="rev-arr" id="revNext">&rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section bg-dark" id="faq">
+  <div class="container">
+    <div class="sec-head">
+      <span class="stag">FAQ / Lp #id: 009</span>
+      <h2 class="stitle">ЧАСТЫЕ ВОПРОСЫ</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q">Как забронировать время в студии?<span class="faq-ico">+</span></button><div class="faq-a"><p>Нажмите «Забронировать время» на сайте или напишите нам в Telegram. Также можно записаться через бот <a href="https://t.me/waveclubmedia_bot" target="_blank">@waveclubmedia_bot</a>.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Что нужно принести на сессию?<span class="faq-ico">+</span></button><div class="faq-a"><p>Достаточно принести себя и готовый материал — текст и бит. Если нужен бит или текст, мы поможем заранее.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Можно ли заказать сведение дистанционно?<span class="faq-ico">+</span></button><div class="faq-a"><p>Да! Отправьте файлы проекта (стемы) на почту, менеджер согласует детали. Срок выполнения — до 5 рабочих дней.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Сколько стоит ротация на радио?<span class="faq-ico">+</span></button><div class="faq-a"><p>Ротация на WAVECLUB RADIO — от 4 990 &#8381;/неделю. Частота и дополнительные опции обсуждаются индивидуально.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Работаете ли вы с начинающими артистами?<span class="faq-ico">+</span></button><div class="faq-a"><p>Абсолютно! Мы работаем с артистами любого уровня. Для начинающих есть специальные пакеты и поддержка на каждом этапе.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Каковы условия подписания с лейблом?<span class="faq-ico">+</span></button><div class="faq-a"><p>WAVECLUBMEDIA предлагает гибкие условия. Свяжитесь с нами для индивидуального разговора &mdash; рассматриваем каждую заявку.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="section bg-black" id="map-section">
+  <div class="container">
+    <div class="map-grid">
+      <div class="map-left">
+        <span class="stag">Адрес / Lp #id: 010</span>
+        <h2 class="stitle">КАК НАС НАЙТИ</h2>
+        <div class="map-addr">
+          <span class="map-icon">&#128205;</span>
+          <div>
+            <p class="map-line"><strong>Молодёжная улица, 13</strong></p>
+            <p class="map-line">пос. Малое Исаково</p>
+            <p class="map-line">Калининград</p>
+          </div>
+        </div>
+        <div class="map-details">
+          <div class="map-det"><span>&#128336;</span><div><strong>Работаем</strong><span>Круглосуточно, 24/7</span></div></div>
+          <div class="map-det"><span>&#128222;</span><div><strong>Телефон</strong><a href="tel:+79527910301">+7 (952) 791-03-01</a></div></div>
+          <div class="map-det"><span>&#9992;&#65039;</span><div><strong>Telegram-бот</strong><a href="https://t.me/waveclubmedia_bot" target="_blank">@waveclubmedia_bot</a></div></div>
+        </div>
+        <a href="https://yandex.ru/maps/?pt=20.587114,54.735890&z=15" target="_blank" rel="noopener" class="btn-red" style="display:inline-flex;align-items:center;gap:8px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Открыть в картах
+        </a>
+      </div>
+      <div class="map-right">
+        <div class="map-frame-box">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=20.577%2C54.726%2C20.597%2C54.746&layer=mapnik&marker=54.7359%2C20.5871" class="map-iframe" title="WAVECLUBMEDIA" loading="lazy"></iframe>
+          <div class="map-badge">
+            <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM" width="24">
+            <span>WAVECLUBMEDIA Studio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contacts">
+  <div class="footer-top">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/Title%202.png" alt="WAVECLUBMEDIA" class="foot-logo">
+          <p class="foot-tagline">Music Brand &bull; Recording Studio &bull; Independent Label &bull; Radio Station</p>
+          <div class="foot-socs">
+            <a href="https://t.me/waveclubmedia" target="_blank" class="foot-soc" aria-label="Telegram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+            <a href="https://vk.me/waveclubmedia" target="_blank" class="foot-soc" aria-label="VK"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+  <g transform="scale(1.25) translate(-2.5 -2.5)">
+    <path d="M12.785 16.241h-.718s-1.584.086-2.98-1.18C7.567 13.64 6.19 10.9 6.19 10.9s-.075-.178.006-.266c.09-.099.334-.104.334-.104l1.718-.011s.162.022.28.098c.097.064.15.185.15.185s.278.623.646 1.188c.718 1.101 1.053 1.342 1.297 1.22.356-.178.249-1.574.249-1.574s.007-.507-.183-.732c-.147-.173-.425-.224-.549-.239-.101-.013.064-.248.278-.353.322-.158.889-.167 1.557-.161.52.004.67.034.872.08.485.112.467.456.435 1.199-.01.21-.02.457-.02.741 0 .079-.016.942.242 1.122.131.09.452.013 1.252-1.206.382-.579.669-1.263.669-1.263s.063-.12.16-.184c.099-.066.234-.046.234-.046l1.807-.011s.542-.067.63.158c.092.236-.206.786-.962 1.666-.711.83-1.055 1.136-1.026 1.406.02.2.247.382.69.736.92.737 1.167 1.122 1.224 1.212l.011.018c.45.654-.498.706-.498.706l-1.604.02s-.345.06-.802-.208c-.239-.14-.473-.37-.701-.595-.35-.345-.673-.664-.955-.586-.484.133-.469.968-.469.968s.003.18-.099.275c-.111.103-.329.122-.329.122z"/>
+  </g>
+</svg>
+            <a href="https://youtube.com/@waveclubmedia" target="_blank" class="foot-soc" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          </div>
+        </div>
+        <div class="foot-nav">
+          <h4>Услуги</h4>
+          <a href="#recording">Запись на студии</a>
+          <a href="#mixing">Сведение и мастеринг</a>
+          <a href="#beats">Создание бита</a>
+          <a href="#promotion">Продвижение артиста</a>
+          <a href="#distribution">Дистрибуция трека</a>
+          <a href="#radio-section">Ротация на радио</a>
+        </div>
+        <div class="foot-nav">
+          <h4>О нас</h4>
+          <a href="#about">О студии</a>
+          <a href="#equipment">Студия</a>
+          <a href="#credits">Релизы</a>
+          <a href="#faq">FAQ</a>
+          <a href="#articles">Статьи</a>
+          <a href="#reviews">Отзывы</a>
+	<a href="merch.html">МЕРЧ</a>
+        </div>
+        <div class="foot-contacts">
+          <h4>Контакты</h4>
+          <p><span>Телефон</span><a href="tel:+79527910301">+7 (952) 791-03-01</a></p>
+          <p><span>Почта</span><a href="mailto:info@waveclubmedia.com">info@waveclubmedia.com</a></p>
+          <p><span>Биты</span><a href="mailto:beats@waveclubmedia.com">beats@waveclubmedia.com</a></p>
+          <p><span>Адрес</span><a href="#map-section">Молодёжная ул., 13, Калининград</a></p>
+          <p><span>Режим</span><span>Работаем 24/7</span></p>
+          <div class="foot-cta-btns">
+            <button class="btn-red btn-sm" id="footerBook">Оставить заявку</button>
+            <a href="https://t.me/waveclubmedia_bot" target="_blank" class="btn-tg btn-sm">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              Онлайн-запись
+            </a>
+          </div>
+          <div class="foot-qr">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https%3A%2F%2Ft.me%2Fwaveclubmedia&bgcolor=0a0a0a&color=b01030&qzone=1" alt="QR Telegram" width="90" height="90" loading="lazy">
+            <div class="foot-qr-txt">
+              <strong>Telegram канал</strong>
+              <span>@waveclubmedia</span>
+              <small>Сканируй QR</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <div class="container">
+      <div class="foot-bar-inner">
+        <span>WAVECLUBMEDIA Ltd.&copy * 2026 * All rights reserved.</span>
+        <div class="foot-legal">
+          <a href="#" id="openPrivacy">Политика конфиденциальности</a>
+          <a href="#" id="openPayments">Правила оплаты</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- PRIVACY OVERLAY -->
+<div class="priv-overlay" id="privOverlay">
+  <div class="priv-head">
+    <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM" width="32" style="border-radius:50%;">
+    <span>Политика конфиденциальности</span>
+    <button id="closePriv">&#10005;</button>
+  </div>
+  <div class="priv-body">
+    <div class="priv-inner">
+      <h1>Политика конфиденциальности</h1>
+      <p class="priv-date">Последнее обновление: январь 2024</p>
+      <h2>1. Общие положения</h2>
+      <p>Настоящая Политика определяет порядок сбора, использования, хранения и защиты персональных данных пользователей сайта WAVECLUBMEDIA. Используя сайт, вы соглашаетесь с условиями Политики.</p>
+      <h2>2. Какие данные мы собираем</h2>
+      <p><strong>Личные данные:</strong> имя, email, телефон при заполнении форм. <strong>Технические данные:</strong> IP-адрес, браузер, ОС, посещённые страницы. <strong>Cookie:</strong> для улучшения работы сайта.</p>
+      <h2>3. Использование файлов cookie</h2>
+      <p>Необходимые cookie — базовая функциональность сайта. Аналитические cookie — анализ посещаемости. Маркетинговые cookie — показ релевантной рекламы. Вы можете отключить необязательные cookie при первом посещении.</p>
+      <h2>4. Цели обработки данных</h2>
+      <p>Обработка заявок и бронирований, связь по вопросам услуг, информационные рассылки (с вашего согласия), улучшение качества сервиса, соблюдение требований законодательства.</p>
+      <h2>5. Передача данных третьим лицам</h2>
+      <p>Мы не продаём и не передаём данные третьим лицам, кроме случаев необходимых для оказания услуг или требований законодательства.</p>
+      <h2>6. Хранение данных</h2>
+      <p>Данные хранятся не дольше, чем необходимо для целей сбора или согласно требованиям применимого законодательства.</p>
+      <h2>7. Ваши права</h2>
+      <p>Доступ к своим данным, исправление, удаление, отзыв согласия, подача жалобы в надзорный орган по защите данных.</p>
+      <h2>8. Безопасность</h2>
+      <p>Мы применяем технические и организационные меры защиты данных от несанкционированного доступа, изменения или раскрытия.</p>
+      <h2>9. Контакты</h2>
+      <p>Email: <a href="mailto:info@waveclubmedia.com">info@waveclubmedia.com</a> | Telegram: <a href="https://t.me/waveclubmedia" target="_blank">@waveclubmedia</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="modal" id="modal-booking">
+  <div class="modal-bg" id="mbg"></div>
+  <div class="modal-box">
+    <button class="modal-x" id="closeBooking">&#10005;</button>
+    <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM" width="44" style="margin:0 auto 16px;display:block;border-radius:50%;">
+    <h3 class="modal-title" id="modalTitle">Забронировать время</h3>
+    <p class="modal-sub">Заполните форму &mdash; свяжемся в ближайшее время</p>
+    <div class="mform">
+      <input type="text" class="minput" placeholder="Ваше имя *" id="bName">
+      <input type="tel" class="minput" placeholder="Телефон или Telegram *" id="bContact">
+      <select class="minput" id="bService">
+        <option value="" disabled selected>Выберите услугу *</option>
+        <option>Запись на студии</option>
+        <option>Сведение и мастеринг</option>
+        <option>Создание бита</option>
+        <option>Текст на заказ</option>
+        <option>Продвижение артиста</option>
+        <option>Дистрибуция трека</option>
+        <option>Ротация на радио</option>
+      </select>
+      <textarea class="minput mtextarea" placeholder="Комментарий / пожелания" id="bComment"></textarea>
+      <p class="mprivacy">Нажимая «Отправить», вы соглашаетесь с <a href="#" id="mPrivLink">Политикой конфиденциальности</a></p>
+      <button class="btn-red btn-full" id="submitBooking">Отправить заявку</button>
+    </div>
+  </div>
+</div>
+
+<!-- COOP MODAL -->
+<div class="modal" id="modal-coop">
+  <div class="modal-bg" id="cbg"></div>
+  <div class="modal-box">
+    <button class="modal-x" id="closeCoop">&#10005;</button>
+    <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM" width="44" style="margin:0 auto 16px;display:block;border-radius:50%;">
+    <h3 class="modal-title">Для сотрудничества</h3>
+    <p class="modal-sub">Опишите предложение &mdash; ответим в ближайшее время</p>
+    <div class="mform">
+      <input type="text" class="minput" placeholder="Ваше имя / проект *" id="cName">
+      <input type="text" class="minput" placeholder="Контакт (email / Telegram) *" id="cContact">
+      <textarea class="minput mtextarea" placeholder="Опишите предложение *" id="cMsg"></textarea>
+      <p class="mprivacy">Нажимая «Отправить», вы соглашаетесь с <a href="#" id="cPrivLink">Политикой конфиденциальности</a></p>
+      <button class="btn-red btn-full" id="submitCoop">Отправить</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+  Заявка отправлена! Мы свяжемся с вами.
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
