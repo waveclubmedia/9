@@ -88,7 +88,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ── NAVBAR ── */
 .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;transition:background var(--tr),border-color var(--tr),backdrop-filter var(--tr);border-bottom:1px solid transparent}
 .navbar.scrolled{background:rgba(0,0,0,.93);border-bottom-color:var(--brd);backdrop-filter:blur(24px);box-shadow:0 4px 30px rgba(0,0,0,.5)}
-.nav-wrap{max-width:1200px;margin:0 auto;padding:0 24px;height:var(--nav);display:flex;align-items:center;gap:24px}
+.nav-wrap{max-width:1200px;margin:0 auto;padding:0 24px;height:var(--nav);display:flex;align-items:center;gap:24px;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;flex-shrink:0}
 .logo-wide{max-width:200px;width:100%;height:auto;max-height:19px;object-fit:contain}
 .logo-sq{height:34px;width:34px;object-fit:contain;display:none}
@@ -421,7 +421,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
   .gal-wide{grid-column:span 2}
 }
 @media(max-width:900px){
-   .nav-right { margin-left: auto; }
+   .nav-right{margin-left:auto;}
   .nav-links{display:none}
   .burger{display:flex}
   .mob-menu{display:block}
