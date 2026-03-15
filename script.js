@@ -533,3 +533,32 @@ console.log('%cMusic Brand • Recording Studio • Independent Label • Radio'
     track.classList.remove('dragging');
   });
 })();
+
+/* ── FLOATING BUTTON ── */
+(function(){
+  var btn  = document.getElementById('floatBtn');
+  var hero = document.getElementById('hero');
+  if(!btn || !hero) return;
+
+  // Показываем кнопку когда герой ушёл из зоны видимости
+  function onScroll(){
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    if(heroBottom < 0){
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // проверяем сразу при загрузке
+
+  // Клик — открывает модалку бронирования
+  btn.addEventListener('click', function(){
+    var modal = document.getElementById('modal-booking');
+    if(modal){
+      modal.classList.add('open');
+      document.body.classList.add('locked');
+    }
+  });
+})();
