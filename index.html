@@ -722,9 +722,13 @@
     <button class="pwa-banner-close" id="pwaDismiss" aria-label="Закрыть">&#10005;</button>
   </div>
 </div>
-
 <script src="script.js"></script>
-
+<script>
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('./sw.js')
+      .catch(function(e){ console.log('SW error:', e); });
+  }
+</script>
 <script>
 (function(){
   var banner = document.getElementById('pwaBanner');
@@ -771,13 +775,6 @@
     if(banner) banner.classList.remove('show');
   });
 })();
-</script>
-
-<script>
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('./sw.js')
-      .catch(function(e){ console.log('SW error:', e); });
-  }
 </script>
 </body>
 </html>
