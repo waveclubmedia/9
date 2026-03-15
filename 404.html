@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — WAVECLUBMEDIA</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #b01030;
+      --bg:  #000;
+      --txt: #fff;
+      --sub: #aaa;
+      --dim: #333;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--txt);
+      font-family: 'Sora', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+      padding: 24px;
+    }
+
+    /* Большой фоновый текст */
+    .bg-text {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(160px, 35vw, 420px);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      color: rgba(255,255,255,0.018);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    /* Анимированные линии фона */
+    .lines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(176,16,48,0.08), transparent);
+      animation: line-move 8s ease-in-out infinite;
+    }
+    .line:nth-child(1) { margin-left: -300px; animation-delay: 0s; }
+    .line:nth-child(2) { margin-left: -150px; animation-delay: 1.5s; }
+    .line:nth-child(3) { margin-left: 0px;    animation-delay: 0.5s; }
+    .line:nth-child(4) { margin-left: 150px;  animation-delay: 2s; }
+    .line:nth-child(5) { margin-left: 300px;  animation-delay: 1s; }
+    @keyframes line-move {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+      50%       { opacity: 1;   transform: scaleY(1); }
+    }
+
+    /* Красное свечение в центре */
+    .glow {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(176,16,48,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+      50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    /* Контент */
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .logo {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      border: 2px solid rgba(176,16,48,0.5);
+      padding: 6px;
+      margin-bottom: 40px;
+      animation: logo-spin 12s linear infinite;
+    }
+    @keyframes logo-spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 1px solid rgba(176,16,48,0.35);
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      animation: fade-in 0.8s ease both;
+    }
+
+    .error-code {
+      font-size: clamp(5rem, 20vw, 14rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 0.9;
+      color: var(--txt);
+      margin-bottom: 8px;
+      animation: fade-up 0.8s ease 0.1s both;
+    }
+    .error-code span { color: var(--red); }
+
+    .error-title {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.65rem, 2vw, 0.85rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sub);
+      margin-bottom: 20px;
+      animation: fade-up 0.8s ease 0.2s both;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--red);
+      margin: 0 auto 20px;
+      animation: fade-in 0.8s ease 0.3s both;
+    }
+
+    .error-desc {
+      font-size: clamp(0.82rem, 2.5vw, 0.96rem);
+      color: var(--sub);
+      line-height: 1.75;
+      max-width: 420px;
+      margin-bottom: 40px;
+      animation: fade-up 0.8s ease 0.35s both;
+    }
+
+    .btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fade-up 0.8s ease 0.45s both;
+    }
+
+    .btn-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .btn-main:hover {
+      background: #8b0020;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(176,16,48,0.4);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      padding: 13px 28px;
+      border: 1px solid #2a2a2a;
+      color: var(--sub);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .btn-ghost:hover { border-color: var(--red); color: var(--red); }
+
+    /* Нижняя подпись */
+    .footer-note {
+      position: fixed;
+      bottom: 28px;
+      left: 0; right: 0;
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dim);
+      animation: fade-in 1.2s ease 0.8s both;
+    }
+
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fade-up  { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+  <!-- Фоновые элементы -->
+  <div class="bg-text">404</div>
+  <div class="glow"></div>
+  <div class="lines">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+
+  <!-- Основной контент -->
+  <div class="content">
+    <img
+      src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png"
+      alt="WCM"
+      class="logo"
+    >
+    <div class="tag">Error 404</div>
+    <div class="error-code">4<span>0</span>4</div>
+    <div class="error-title">Трек не найден</div>
+    <div class="divider"></div>
+    <p class="error-desc">
+      Страница которую ты ищешь была удалена, переименована или никогда не существовала.
+      Но студия — работает.
+    </p>
+    <div class="btns">
+      <a href="index.html" class="btn-main">
+        ← На главную
+      </a>
+      <a href="https://t.me/waveclubmedia" target="_blank" class="btn-ghost">
+        Telegram
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-note">WAVECLUBMEDIA — Music Brand · Recording Studio · Label · Radio</div>
+
+</body>
+</html>
