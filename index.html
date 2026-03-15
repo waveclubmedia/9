@@ -744,12 +744,14 @@
   window.addEventListener('beforeinstallprompt', function(e){
     e.preventDefault();
     deferredPrompt = e;
-    setTimeout(function(){
-      if(banner && !localStorage.getItem('wcm_pwa_dismissed')){
-        banner.classList.add('show');
-      }
-    }, 3000);
   });
+
+  /* Показываем баннер через 3 сек всегда — независимо от события */
+  setTimeout(function(){
+    if(banner && !localStorage.getItem('wcm_pwa_dismissed')){
+      banner.classList.add('show');
+    }
+  }, 3000);
 
   if(installBtn){
     installBtn.addEventListener('click', function(){
