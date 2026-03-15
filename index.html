@@ -731,50 +731,71 @@
 </script>
 <script>
 (function(){
-  var banner = document.getElementById('pwaBanner');
+  var banner     = document.getElementById('pwaBanner');
   var installBtn = document.getElementById('pwaInstall');
   var dismissBtn = document.getElementById('pwaDismiss');
+  var floatBtn   = document.getElementById('floatBtn');
   var deferredPrompt = null;
 
-  if(localStorage.getItem('wcm_pwa_dismissed') ||
-     window.matchMedia('(display-mode: standalone)').matches){
+  /* Определяем iOS */
+  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  /* Уже установлено? */
+  var isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+
+  if(isStandalone || localStorage.getItem('wcm_pwa_dismissed')){
     if(banner) banner.style.display = 'none';
+    return;
   }
 
+  /* Ловим Android промпт */
   window.addEventListener('beforeinstallprompt', function(e){
     e.preventDefault();
     deferredPrompt = e;
   });
 
-  /* Показываем баннер через 3 сек всегда — независимо от события */
+  /* Показываем баннер через 3 сек */
   setTimeout(function(){
-    if(banner && !localStorage.getItem('wcm_pwa_dismissed')){
-      banner.classList.add('show');
-    }
+    if(!banner || localStorage.getItem('wcm_pwa_dismissed')) return;
+    banner.classList.add('show');
+    /* Поднимаем плавающую кнопку */
+    if(floatBtn) floatBtn.classList.add('banner-up');
   }, 3000);
 
+  /* Кнопка СКАЧАТЬ */
   if(installBtn){
     installBtn.addEventListener('click', function(){
-      if(!deferredPrompt) return;
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(function(result){
-        if(result.outcome === 'accepted'){
-          if(banner) banner.classList.remove('show');
-        }
-        deferredPrompt = null;
-      });
+      if(deferredPrompt){
+        /* Android Chrome — нативный диалог */
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(function(result){
+          deferredPrompt = null;
+          if(result.outcome === 'accepted'){
+            banner.classList.remove('show');
+            if(floatBtn) floatBtn.classList.remove('banner-up');
+          }
+        });
+      } else if(isIOS){
+        /* iOS — инструкция */
+        alert('Чтобы установить на iPhone:\n\n1. Нажми кнопку «Поделиться» (квадрат со стрелкой внизу)\n2. Выбери «На экран домой»\n3. Нажми «Добавить»\n\nПосле этого WAVECLUB RADIO появится на рабочем столе.');
+      } else {
+        /* Другие браузеры */
+        alert('Открой этот сайт в Chrome и повтори — там появится кнопка установки.');
+      }
     });
   }
 
+  /* Кнопка закрыть */
   if(dismissBtn){
     dismissBtn.addEventListener('click', function(){
-      if(banner) banner.classList.remove('show');
+      banner.classList.remove('show');
+      if(floatBtn) floatBtn.classList.remove('banner-up');
       localStorage.setItem('wcm_pwa_dismissed', '1');
     });
   }
 
   window.addEventListener('appinstalled', function(){
-    if(banner) banner.classList.remove('show');
+    banner.classList.remove('show');
+    if(floatBtn) floatBtn.classList.remove('banner-up');
   });
 })();
 </script>
