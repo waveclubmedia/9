@@ -576,3 +576,13 @@ body:has(button:hover) .cursor-dot {
   letter-spacing: 0.2em;
   color: rgba(255,255,255,0.3);
 }
+
+/* ── PARALLAX ── */
+.gal-item {
+  overflow: hidden; /* уже должно быть, но на всякий случай */
+}
+
+.gal-item img {
+  will-change: transform; /* подсказка браузеру для плавности */
+  transition: filter 0.5s; /* оставляем hover эффект */
+}
