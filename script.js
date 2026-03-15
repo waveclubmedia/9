@@ -440,3 +440,42 @@ console.log('%cMusic Brand • Recording Studio • Independent Label • Radio'
     ring.style.opacity = '1';
   });
 })();
+
+/* ── PARALLAX на галерее студии ── */
+(function(){
+  // На телефоне не запускаем
+  if(window.matchMedia('(pointer: coarse)').matches) return;
+
+  var items = Array.from(document.querySelectorAll('.gal-item img'));
+  if(!items.length) return;
+
+  var ticking = false;
+
+  function updateParallax(){
+    items.forEach(function(img){
+      var rect   = img.closest('.gal-item').getBoundingClientRect();
+      var wH     = window.innerHeight;
+
+      // Элемент в зоне видимости?
+      if(rect.bottom < 0 || rect.top > wH) return;
+
+      // Считаем насколько элемент прошёл через экран (от 0 до 1)
+      var progress = (wH - rect.top) / (wH + rect.height);
+      // Смещение: от -20px до +20px
+      var offset   = (progress - 0.5) * 60;
+
+      img.style.transform = 'scale(1.06) translateY(' + offset + 'px)';
+    });
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    requestAnimationFrame(updateParallax);
+    ticking = true;
+  }, { passive: true });
+
+  // Запускаем сразу
+  updateParallax();
+})();
