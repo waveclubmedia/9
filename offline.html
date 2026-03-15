@@ -314,7 +314,7 @@
     if(!started){ startGame(); return; }
     if(dead){ restartGame(); return; }
     if(player.onGround){
-      player.vy = -px(20);
+      player.vy = -px(40);
       player.onGround = false;
       spawnJumpParticles();
     }
