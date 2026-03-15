@@ -370,6 +370,45 @@
     </div>
   </div>
 </footer><script>
+/* ── PRELOADER ── */
+(function(){
+  var preloader = document.getElementById('preloader');
+  var fill      = document.getElementById('preloaderFill');
+  var label     = document.getElementById('preloaderLabel');
+  if(!preloader) return;
+
+  // Если уже показывали в этой сессии — сразу скрываем
+  if(sessionStorage.getItem('wcm_loaded')){
+    preloader.style.display = 'none';
+    return;
+  }
+
+  var progress = 0;
+
+  var timer = setInterval(function(){
+    // Ускоряем до 90% быстро, потом замедляем
+    var step = progress < 70 ? 3 : progress < 90 ? 1.5 : 0.5;
+    progress = Math.min(progress + step, 100);
+
+    if(fill)  fill.style.width   = progress + '%';
+    if(label) label.textContent  = Math.floor(progress) + '%';
+
+    if(progress >= 100){
+      clearInterval(timer);
+      setTimeout(function(){
+        preloader.classList.add('hidden');
+        sessionStorage.setItem('wcm_loaded', '1');
+
+        // Убираем из DOM после анимации
+        setTimeout(function(){
+          preloader.style.display = 'none';
+        }, 700);
+      }, 200);
+    }
+  }, 30);
+})();
+</script>
+<script>
 (function(){
   var nav=document.getElementById('navbar');
   function run(){ if(nav) nav.classList.toggle('scrolled',window.scrollY>60); }
