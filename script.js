@@ -104,45 +104,100 @@ $$('.faq-q').forEach(btn=>{
 
 /* ── REVIEWS SLIDER ── */
 (function(){
-  const track=$('#revTrack'), dotsWrap=$('#revDots');
-  const cards=$$('.rev-card');
-  const prev=$('#revPrev'), next=$('#revNext');
-  if(!track||!cards.length) return;
-  let cur=0, perV=getPV(), maxI=Math.max(0,cards.length-perV), auto;
+  var track    = document.getElementById('revTrack');
+  var dotsWrap = document.getElementById('revDots');
+  var cards    = Array.from(document.querySelectorAll('.rev-card'));
+  var prevBtn  = document.getElementById('revPrev');
+  var nextBtn  = document.getElementById('revNext');
+  if(!track || !cards.length) return;
 
-  function getPV(){ return innerWidth<680?1:innerWidth<900?2:3; }
+  var cur = 0;
+  var auto;
+
+  function perView(){
+    if(window.innerWidth < 680) return 1;
+    if(window.innerWidth < 900) return 2;
+    return 3;
+  }
+
+  function setCardWidths(){
+    var pv  = perView();
+    var gap = 20;
+    var w   = (track.parentElement.offsetWidth - gap * (pv - 1)) / pv;
+    cards.forEach(function(c){
+      c.style.flex  = '0 0 ' + w + 'px';
+      c.style.width = w + 'px';
+    });
+  }
 
   function buildDots(){
     if(!dotsWrap) return;
-    dotsWrap.innerHTML='';
-    const n=Math.ceil(cards.length/perV);
-    for(let i=0;i<n;i++){
-      const d=document.createElement('button');
-      d.className='rdot'+(i===0?' active':'');
-      d.addEventListener('click',()=>go(i));
+    dotsWrap.innerHTML = '';
+    var totalPages = Math.ceil(cards.length / perView());
+    for(var i = 0; i < totalPages; i++){
+      var d = document.createElement('button');
+      d.className  = 'rdot' + (i === 0 ? ' active' : '');
+      d.dataset.page = i;
+      d.addEventListener('click', function(){
+        goTo(parseInt(this.dataset.page));
+        startAuto();
+      });
       dotsWrap.appendChild(d);
     }
   }
-  function updDots(){
+
+  function updateDots(){
     if(!dotsWrap) return;
-    $$('.rdot',dotsWrap).forEach((d,i)=>d.classList.toggle('active',i===Math.floor(cur/perV)));
+    var currentPage = Math.floor(cur / perView());
+    Array.from(dotsWrap.querySelectorAll('.rdot')).forEach(function(d, i){
+      d.classList.toggle('active', i === currentPage);
+    });
   }
-  function go(page){
-    perV=getPV(); maxI=Math.max(0,cards.length-perV);
-    cur=Math.min(page*perV,maxI);
-    const gap=20, w=(track.parentElement.offsetWidth-gap*(perV-1))/perV;
-    track.style.transform=`translateX(-${cur*(w+gap)}px)`;
-    updDots();
+
+  function goTo(page){
+    var pv       = perView();
+    var gap      = 20;
+    var maxIndex = Math.max(0, cards.length - pv);
+    cur = Math.min(page * pv, maxIndex);
+    cur = Math.max(0, cur);
+    var cardW  = cards[0].offsetWidth;
+    var offset = cur * (cardW + gap);
+    track.style.transform = 'translateX(-' + offset + 'px)';
+    updateDots();
   }
-  function goNext(){ const p=Math.floor(cur/perV)+1; go(p>=Math.ceil(cards.length/perV)?0:p); }
-  function goPrev(){ const p=Math.floor(cur/perV)-1; go(p<0?Math.ceil(cards.length/perV)-1:p); }
-  function startAuto(){ clearInterval(auto); auto=setInterval(goNext,5000); }
 
-  next&&next.addEventListener('click',()=>{ goNext(); startAuto(); });
-  prev&&prev.addEventListener('click',()=>{ goPrev(); startAuto(); });
-  window.addEventListener('resize',()=>{ perV=getPV(); maxI=Math.max(0,cards.length-perV); cur=0; track.style.transform='translateX(0)'; buildDots(); });
+  function maxPage(){
+    return Math.max(0, Math.ceil(cards.length / perView()) - 1);
+  }
 
-  buildDots(); startAuto();
+  function next(){
+    var p = Math.floor(cur / perView()) + 1;
+    goTo(p > maxPage() ? 0 : p);
+  }
+
+  function prev(){
+    var p = Math.floor(cur / perView()) - 1;
+    goTo(p < 0 ? maxPage() : p);
+  }
+
+  function startAuto(){
+    clearInterval(auto);
+    auto = setInterval(next, 5000);
+  }
+
+  if(nextBtn) nextBtn.addEventListener('click', function(){ next(); startAuto(); });
+  if(prevBtn) prevBtn.addEventListener('click', function(){ prev(); startAuto(); });
+
+  window.addEventListener('resize', function(){
+    setCardWidths();
+    cur = 0;
+    track.style.transform = 'translateX(0)';
+    buildDots();
+  });
+
+  setCardWidths();
+  buildDots();
+  startAuto();
 })();
 
 /* ── RADIO PLAYER ── */
