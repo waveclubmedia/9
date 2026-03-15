@@ -441,30 +441,37 @@ console.log('%cMusic Brand • Recording Studio • Independent Label • Radio'
   });
 })();
 
-/* ── PARALLAX на галерее студии ── */
+/* ── PARALLAX на галерее студии (fixed) ── */
 (function(){
-  // На телефоне не запускаем
   if(window.matchMedia('(pointer: coarse)').matches) return;
 
-  var items = Array.from(document.querySelectorAll('.gal-item img'));
+  var items = Array.from(document.querySelectorAll('.gal-item'));
   if(!items.length) return;
+
+  // Убираем CSS transition с картинок чтобы не мешал
+  items.forEach(function(item){
+    var img = item.querySelector('img');
+    if(img) img.style.transition = 'filter 0.5s';
+  });
 
   var ticking = false;
 
   function updateParallax(){
-    items.forEach(function(img){
-      var rect   = img.closest('.gal-item').getBoundingClientRect();
-      var wH     = window.innerHeight;
+    var wH = window.innerHeight;
 
-      // Элемент в зоне видимости?
-      if(rect.bottom < 0 || rect.top > wH) return;
+    items.forEach(function(item){
+      var img  = item.querySelector('img');
+      if(!img) return;
 
-      // Считаем насколько элемент прошёл через экран (от 0 до 1)
+      var rect = item.getBoundingClientRect();
+
+      // Не обрабатываем если вне экрана
+      if(rect.bottom < -100 || rect.top > wH + 100) return;
+
       var progress = (wH - rect.top) / (wH + rect.height);
-      // Смещение: от -20px до +20px
-      var offset   = (progress - 0.5) * 60;
+      var offset   = (progress - 0.5) * 50;
 
-      img.style.transform = 'scale(1.06) translateY(' + offset + 'px)';
+      img.style.transform = 'scale(1.12) translateY(' + offset + 'px)';
     });
 
     ticking = false;
@@ -476,7 +483,6 @@ console.log('%cMusic Brand • Recording Studio • Independent Label • Radio'
     ticking = true;
   }, { passive: true });
 
-  // Запускаем сразу
   updateParallax();
 })();
 
