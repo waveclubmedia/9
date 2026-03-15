@@ -586,3 +586,141 @@ body:has(button:hover) .cursor-dot {
   will-change: transform; /* подсказка браузеру для плавности */
   transition: filter 0.5s; /* оставляем hover эффект */
 }
+
+/* ── HORIZONTAL RELEASES SCROLL ── */
+.rel-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.rel-arrow {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #2a2a2a;
+  border-radius: 50%;
+  background: transparent;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+  flex-shrink: 0;
+}
+
+.rel-arrow:hover {
+  border-color: #b01030;
+  color: #b01030;
+  background: rgba(176,16,48,0.06);
+}
+
+.rel-scroll-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.rel-scroll-track {
+  display: flex;
+  gap: 16px;
+  padding: 8px 40px 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox — прячем скроллбар */
+  -ms-overflow-style: none;
+  cursor: grab;
+  user-select: none;
+}
+
+/* Chrome — прячем скроллбар */
+.rel-scroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+.rel-scroll-track.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.rel-scroll-item {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.25s;
+}
+
+.rel-scroll-item:hover {
+  transform: translateY(-4px);
+}
+
+.rel-scroll-item .rel-cover {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #1e1e1e;
+  background: #111;
+  flex-shrink: 0;
+  transition: box-shadow 0.3s;
+}
+
+.rel-scroll-item:hover .rel-cover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  border-color: rgba(176,16,48,0.3);
+}
+
+.rel-scroll-item .rel-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.rel-scroll-item:hover .rel-cover img {
+  transform: scale(1.05);
+}
+
+.rel-scroll-name {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b01030;
+  margin-top: 4px;
+}
+
+.rel-scroll-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #aaa;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Градиенты по краям */
+.rel-fade-left,
+.rel-fade-right {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.rel-fade-left {
+  left: 0;
+  background: linear-gradient(to right, #0a0a0a, transparent);
+}
+
+.rel-fade-right {
+  right: 0;
+  background: linear-gradient(to left, #0a0a0a, transparent);
+}
+
+/* На телефоне — немного меньше карточки */
+@media(max-width:680px){
+  .rel-scroll-item { flex: 0 0 160px; }
+  .rel-scroll-item .rel-cover { width: 160px; height: 160px; }
+}
