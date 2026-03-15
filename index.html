@@ -306,22 +306,85 @@
 <!-- RELEASES -->
 <section class="section bg-dark" id="credits">
   <div class="container">
-    <div class="sec-head">
-      <span class="stag">Релизы / Lp #id: 005</span>
-      <h2 class="stitle">РЕЛИЗЫ ЛЕЙБЛА</h2>
-      <p class="ssub">Часть синглов и альбомов, записанных при участии WAVECLUBMEDIA</p>
+    <div class="sec-head" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:40px;">
+      <div>
+        <span class="stag">Релизы / Lp #id: 005</span>
+        <h2 class="stitle" style="margin-bottom:4px;">РЕЛИЗЫ ЛЕЙБЛА</h2>
+        <p class="ssub">Часть синглов и альбомов, записанных при участии WAVECLUBMEDIA</p>
+      </div>
+      <!-- Стрелки -->
+      <div class="rel-arrows">
+        <button class="rel-arrow" id="relPrev" aria-label="Назад">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        </button>
+        <button class="rel-arrow" id="relNext" aria-label="Вперёд">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
     </div>
-    <div class="rel-grid">
-      <div class="rel-item"><div class="rel-cover"> <img src="nedoma.jpg" alt="heavywinter - nedoma"> </div><p class="release-title">heavywinter &mdash; Не Дома</p></div>
-      <div class="rel-item"><div class="rel-cover"> <img src="bless.jpg" alt="taodo - bless"> </div><p class="release-title">Taodo &mdash; bless (ft. heavywinter)</p></div>
-      <div class="rel-item"><div class="rel-cover"> <img src="muse.jpg" alt="sasharj - muse"> </div><p class="release-title">SashaRj &mdash; Muse (ft. skum1kkk)</p></div>
-      <div class="rel-item"><div class="rel-cover"> <img src="muco.jpg" alt="mu40 - я и ты"> </div><p class="release-title">MU40 &mdash; Я и Ты</p></div>
-      <div class="rel-item"><div class="rel-cover"> <img src="svet.jpg" alt="ragekawai - дайте света"> </div><p class="release-title">ragekawai &mdash; Дайте Света</p></div>
-      <div class="rel-item"><div class="rel-cover"> <img src="cava.jpg" alt="caweed - Scalpel Plane"> </div><p class="release-title">CAWEED &mdash; Scalpel Plane (ft. skum1kkk)</p></div>
-      <div class="rel-item"><div class="rel-cover"> <img src="pecal.jpg" alt="sasha rj - осенняя печаль"> </div><p class="release-title">SashaRj &mdash; Осенняя Печаль</p></div>
-      <div class="rel-item"><div class="rel-cover"> <img src="pesok.jpg" alt="lil pesochek - никто не найдет"> </div><p class="release-title">Lil Pesochek &mdash; Никто не найдет</p></div>
+  </div>
+
+  <!-- Скролл-трек — ВНЕ container чтобы выходить за края -->
+  <div class="rel-scroll-wrap">
+    <div class="rel-scroll-track" id="relTrack">
+
+      <!-- ВСТАВЬ СЮДА СВОИ КАРТОЧКИ В ТАКОМ ФОРМАТЕ: -->
+      <div class="rel-scroll-item">
+        <div class="rel-cover"><img src="nedoma.jpg" alt="heavywinter — Не Дома"></div>
+        <p class="rel-scroll-name">heavywinter</p>
+        <p class="rel-scroll-title">Не Дома</p>
+      </div>
+
+      <div class="rel-scroll-item">
+        <div class="rel-cover"><img src="bless.jpg" alt="Taodo — bless"></div>
+        <p class="rel-scroll-name">Taodo</p>
+        <p class="rel-scroll-title">bless ft. heavywinter</p>
+      </div>
+
+      <div class="rel-scroll-item">
+        <div class="rel-cover"><img src="muse.jpg" alt="SashaRj — Muse"></div>
+        <p class="rel-scroll-name">SashaRj</p>
+        <p class="rel-scroll-title">Muse ft. skum1kkk</p>
+      </div>
+
+      <div class="rel-scroll-item">
+        <div class="rel-cover"><img src="muco.jpg" alt="MU40"></div>
+        <p class="rel-scroll-name">MU40</p>
+        <p class="rel-scroll-title">Я и Ты</p>
+      </div>
+
+      <div class="rel-scroll-item">
+        <div class="rel-cover"><img src="svet.jpg" alt="ragekawai"></div>
+        <p class="rel-scroll-name">ragekawai</p>
+        <p class="rel-scroll-title">Дайте Света</p>
+      </div>
+
+      <div class="rel-scroll-item">
+        <div class="rel-cover"><img src="cava.jpg" alt="CAWEED"></div>
+        <p class="rel-scroll-name">CAWEED</p>
+        <p class="rel-scroll-title">Scalpel Plane ft. skum1kkk</p>
+      </div>
+
+      <div class="rel-scroll-item">
+        <div class="rel-cover"><img src="pecal.jpg" alt="SashaRj"></div>
+        <p class="rel-scroll-name">SashaRj</p>
+        <p class="rel-scroll-title">Осенняя Печаль</p>
+      </div>
+
+      <div class="rel-scroll-item">
+        <div class="rel-cover"><img src="pesok.jpg" alt="Lil Pesochek"></div>
+        <p class="rel-scroll-name">Lil Pesochek</p>
+        <p class="rel-scroll-title">Никто не найдет</p>
+      </div>
+
     </div>
-    <p class="rel-note">И многие другие...</p>
+    <!-- Градиенты по краям для красоты -->
+    <div class="rel-fade-left"></div>
+    <div class="rel-fade-right"></div>
+  </div>
+
+  <div class="container">
+    <p class="rel-note" style="margin-top:32px;">И многие другие...</p>
   </div>
 </section>
 
