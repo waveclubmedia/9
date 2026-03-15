@@ -2,7 +2,7 @@
   "name": "WAVECLUBMEDIA",
   "short_name": "WCM",
   "description": "Music Brand · Recording Studio · Independent Label · Radio Station",
-  "start_url": "./index.html",
+  "start_url": "./radioapp.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
