@@ -709,15 +709,8 @@
   </svg>
   <span>Записаться</span>
 </button>
-<script src="script.js"></script>
-<script>
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('./sw.js')
-      .catch(function(e){ console.log('SW error:', e); });
-  }
-</script>
 
-<!-- БАННЕР УСТАНОВКИ PWA -->
+<!-- PWA INSTALL BANNER -->
 <div class="pwa-banner" id="pwaBanner">
   <div class="pwa-banner-inner">
     <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM" width="40" height="40" style="border-radius:50%;border:1px solid rgba(176,16,48,.5);">
@@ -726,44 +719,27 @@
       <span>Установи приложение на телефон</span>
     </div>
     <button class="pwa-banner-install" id="pwaInstall">Установить</button>
-    <button class="pwa-banner-close" id="pwaDismiss" aria-label="Закрыть">✕</button>
+    <button class="pwa-banner-close" id="pwaDismiss" aria-label="Закрыть">&#10005;</button>
   </div>
 </div>
 
-<!-- SERVICE WORKER + PWA INSTALL LOGIC -->
+<script src="script.js"></script>
+
 <script>
 (function(){
-  /* ── РЕГИСТРАЦИЯ SERVICE WORKER ── */
-  if('serviceWorker' in navigator){
-    window.addEventListener('load', function(){
-      navigator.serviceWorker.register('./sw.js')
-        .then(function(reg){
-          console.log('[WCM PWA] SW registered:', reg.scope);
-        })
-        .catch(function(err){
-          console.log('[WCM PWA] SW error:', err);
-        });
-    });
-  }
-
-  /* ── БАННЕР УСТАНОВКИ ── */
-  var banner      = document.getElementById('pwaBanner');
-  var installBtn  = document.getElementById('pwaInstall');
-  var dismissBtn  = document.getElementById('pwaDismiss');
+  var banner = document.getElementById('pwaBanner');
+  var installBtn = document.getElementById('pwaInstall');
+  var dismissBtn = document.getElementById('pwaDismiss');
   var deferredPrompt = null;
 
-  /* Скрываем баннер если уже установлено или отклонено */
-  if(localStorage.getItem('wcm_pwa_dismissed') || 
+  if(localStorage.getItem('wcm_pwa_dismissed') ||
      window.matchMedia('(display-mode: standalone)').matches){
     if(banner) banner.style.display = 'none';
   }
 
-  /* Ловим событие beforeinstallprompt */
   window.addEventListener('beforeinstallprompt', function(e){
     e.preventDefault();
     deferredPrompt = e;
-
-    /* Показываем баннер через 3 секунды */
     setTimeout(function(){
       if(banner && !localStorage.getItem('wcm_pwa_dismissed')){
         banner.classList.add('show');
@@ -771,14 +747,12 @@
     }, 3000);
   });
 
-  /* Клик Установить */
   if(installBtn){
     installBtn.addEventListener('click', function(){
       if(!deferredPrompt) return;
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then(function(result){
         if(result.outcome === 'accepted'){
-          console.log('[WCM PWA] Installed!');
           if(banner) banner.classList.remove('show');
         }
         deferredPrompt = null;
@@ -786,7 +760,6 @@
     });
   }
 
-  /* Клик Закрыть */
   if(dismissBtn){
     dismissBtn.addEventListener('click', function(){
       if(banner) banner.classList.remove('show');
@@ -794,14 +767,17 @@
     });
   }
 
-  /* Приложение установлено */
   window.addEventListener('appinstalled', function(){
-    console.log('[WCM PWA] App installed successfully');
     if(banner) banner.classList.remove('show');
-    deferredPrompt = null;
   });
-
 })();
+</script>
+
+<script>
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('./sw.js')
+      .catch(function(e){ console.log('SW error:', e); });
+  }
 </script>
 </body>
 </html>
