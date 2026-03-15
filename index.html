@@ -716,5 +716,34 @@
       .catch(function(e){ console.log('SW error:', e); });
   }
 </script>
+
+<!-- БАННЕР УСТАНОВКИ PWA -->
+<div class="pwa-banner" id="pwaBanner">
+  <div class="pwa-banner-inner">
+    <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM" width="40" height="40" style="border-radius:50%;border:1px solid rgba(176,16,48,.5);">
+    <div class="pwa-banner-text">
+      <strong>WAVECLUBMEDIA</strong>
+      <span>Установи приложение на телефон</span>
+    </div>
+    <button class="pwa-banner-install" id="pwaInstall">Установить</button>
+    <button class="pwa-banner-close" id="pwaDismiss" aria-label="Закрыть">✕</button>
+  </div>
+</div>
+
+<!-- SERVICE WORKER + PWA INSTALL LOGIC -->
+<script>
+(function(){
+  /* ── РЕГИСТРАЦИЯ SERVICE WORKER ── */
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('./sw.js')
+        .then(function(reg){
+          console.log('[WCM PWA] SW registered:', reg.scope);
+        })
+        .catch(function(err){
+          console.log('[WCM PWA] SW error:', err);
+        });
+    });
+  }
 </body>
 </html>
