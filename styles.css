@@ -745,38 +745,36 @@ body:has(button:hover) .cursor-dot {
   border-radius: 40px;
   cursor: pointer;
   box-shadow: 0 8px 32px rgba(176,16,48,0.45);
-
-  /* Скрыта по умолчанию */
   opacity: 0;
   visibility: hidden;
   transform: translateY(16px);
-  transition: opacity 0.35s ease,
+  transition: bottom 0.4s cubic-bezier(.4,0,.2,1),
+              opacity 0.35s ease,
               visibility 0.35s ease,
               transform 0.35s ease,
               background 0.25s ease,
               box-shadow 0.25s ease;
 }
-
 .float-btn.visible {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
-
+.float-btn.banner-up {
+  bottom: 90px;
+}
 .float-btn:hover {
   background: #8b0020;
   box-shadow: 0 12px 40px rgba(176,16,48,0.6);
   transform: translateY(-2px);
 }
-
 .float-btn:active {
   transform: translateY(0);
 }
-
-/* На телефоне — только иконка без текста */
 @media(max-width:680px){
   .float-btn span { display: none; }
   .float-btn { padding: 14px; border-radius: 50%; bottom: 24px; right: 24px; }
+  .float-btn.banner-up { bottom: 86px; }
 }
 
 /* ── PWA BANNER ── */
