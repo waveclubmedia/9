@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#000000">
+  <title>WAVECLUB RADIO</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #b01030;
+      --red2: #8b0020;
+      --bg: #000;
+      --txt: #fff;
+      --sub: #888;
+      --dim: #333;
+      --brd: #1a1a1a;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--bg);
+      color: var(--txt);
+      font-family: 'Sora', sans-serif;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    /* ── ANIMATED BACKGROUND ── */
+    .app-bg {
+      position: fixed; inset: 0;
+      background: #000;
+      overflow: hidden;
+    }
+    .bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0;
+      animation: orb-appear 1.2s ease forwards;
+    }
+    .bg-orb-1 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(176,16,48,.35) 0%, transparent 70%);
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      animation-delay: .2s;
+      animation: orb-appear 1.2s ease .2s forwards, orb-float1 8s ease-in-out infinite;
+    }
+    .bg-orb-2 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(176,16,48,.15) 0%, transparent 70%);
+      bottom: 100px; right: -80px;
+      animation: orb-appear 1.2s ease .5s forwards, orb-float2 10s ease-in-out infinite;
+    }
+    .bg-orb-3 {
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(176,16,48,.1) 0%, transparent 70%);
+      bottom: 200px; left: -50px;
+      animation: orb-appear 1.2s ease .8s forwards, orb-float3 12s ease-in-out infinite;
+    }
+    @keyframes orb-appear { to { opacity: 1; } }
+    @keyframes orb-float1 {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(30px); }
+    }
+    @keyframes orb-float2 {
+      0%,100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-20px) translateX(-10px); }
+    }
+    @keyframes orb-float3 {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(15px); }
+    }
+
+    /* Noise texture overlay */
+    .bg-noise {
+      position: fixed; inset: 0;
+      opacity: .03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 150px;
+      pointer-events: none;
+    }
+
+    /* ── APP SHELL ── */
+    .app {
+      position: fixed; inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding-top: max(var(--safe-top), 16px);
+      padding-bottom: max(var(--safe-bottom), 16px);
+    }
+
+    /* ── TOP BAR ── */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px 20px;
+      flex-shrink: 0;
+    }
+    .top-bar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .top-bar-logo img {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(176,16,48,.5);
+    }
+    .top-bar-title {
+      font-family: 'Space Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--sub);
+    }
+    .top-bar-live {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: rgba(176,16,48,.12);
+      border: 1px solid rgba(176,16,48,.3);
+      border-radius: 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .14em;
+      color: var(--red);
+    }
+    .live-dot {
+      width: 6px; height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.7)} }
+
+    /* ── MAIN CONTENT ── */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 32px;
+      gap: 0;
+    }
+
+    /* ── VINYL DISC ── */
+    .vinyl-wrap {
+      position: relative;
+      width: min(260px, 68vw);
+      height: min(260px, 68vw);
+      margin-bottom: 40px;
+    }
+    .vinyl {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      position: relative;
+      animation: spin 8s linear infinite;
+      animation-play-state: paused;
+    }
+    .vinyl.playing { animation-play-state: running; }
+    @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+    /* Vinyl grooves */
+    .vinyl-disc {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background:
+        conic-gradient(
+          from 0deg,
+          #0d0d0d 0deg, #1a1a1a 2deg, #0d0d0d 4deg,
+          #111 6deg, #181818 8deg, #0d0d0d 10deg,
+          #151515 12deg, #0d0d0d 14deg, #121212 16deg,
+          #1a1a1a 18deg, #0d0d0d 20deg, #141414 22deg,
+          #0d0d0d 24deg, #111 26deg, #0d0d0d 28deg,
+          #191919 30deg, #0a0a0a 32deg, #161616 34deg,
+          #0d0d0d 36deg, #131313 38deg, #0a0a0a 40deg
+        );
+      background-size: 100% 100%;
+    }
+    /* Multiple groove rings */
+    .vinyl-grooves {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background:
+        repeating-radial-gradient(
+          circle at center,
+          transparent 20px,
+          rgba(255,255,255,.015) 21px,
+          transparent 22px,
+          transparent 28px,
+          rgba(255,255,255,.01) 29px,
+          transparent 30px
+        );
+    }
+    /* Center label */
+    .vinyl-label {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 35%;
+      height: 35%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, #1a0008, #0d0005);
+      border: 2px solid rgba(176,16,48,.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 0 1px rgba(176,16,48,.2),
+        0 0 20px rgba(176,16,48,.15);
+    }
+    .vinyl-label img {
+      width: 55%;
+      height: 55%;
+      object-fit: contain;
+      border-radius: 50%;
+      opacity: .9;
+    }
+    /* Center hole */
+    .vinyl-hole {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #000;
+      z-index: 2;
+    }
+    /* Reflection */
+    .vinyl-shine {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    /* Glow under disc */
+    .vinyl-glow {
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(176,16,48,.2) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity .6s ease;
+      pointer-events: none;
+    }
+    .vinyl.playing ~ .vinyl-glow,
+    .vinyl-wrap:has(.playing) .vinyl-glow { opacity: 1; }
+
+    /* Needle arm */
+    .needle {
+      position: absolute;
+      top: -8px; right: -8px;
+      width: 60px; height: 80px;
+      transform-origin: top right;
+      transform: rotate(-25deg);
+      transition: transform .8s cubic-bezier(.4,0,.2,1);
+      pointer-events: none;
+    }
+    .needle.on-disc { transform: rotate(0deg); }
+    .needle-arm {
+      position: absolute;
+      top: 0; right: 8px;
+      width: 3px; height: 70px;
+      background: linear-gradient(to bottom, #555, #333, #222);
+      border-radius: 2px;
+      transform-origin: top center;
+    }
+    .needle-head {
+      position: absolute;
+      bottom: 0; right: 4px;
+      width: 10px; height: 10px;
+      background: var(--red);
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      box-shadow: 0 0 6px rgba(176,16,48,.6);
+    }
+    .needle-pivot {
+      position: absolute;
+      top: -4px; right: 4px;
+      width: 16px; height: 16px;
+      background: radial-gradient(circle at 40% 40%, #444, #222);
+      border-radius: 50%;
+      border: 1px solid #555;
+    }
+
+    /* ── TRACK INFO ── */
+    .track-info {
+      text-align: center;
+      margin-bottom: 36px;
+      width: 100%;
+    }
+    .track-name {
+      font-size: clamp(1.1rem, 4vw, 1.4rem);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--txt);
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* Marquee for long names */
+    .track-name.long {
+      animation: marquee 10s linear infinite;
+      display: inline-block;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      40% { transform: translateX(calc(-100% + 80vw)); }
+      60% { transform: translateX(calc(-100% + 80vw)); }
+      100% { transform: translateX(0); }
+    }
+    .track-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--sub);
+    }
+
+    /* ── VISUALIZER BARS ── */
+    .viz {
+      display: flex;
+      gap: 3px;
+      align-items: flex-end;
+      height: 28px;
+      margin-bottom: 40px;
+      justify-content: center;
+    }
+    .viz-bar {
+      width: 3px;
+      background: var(--red);
+      border-radius: 2px;
+      opacity: .2;
+      animation: vbar var(--dur, .8s) ease-in-out infinite alternate;
+      animation-delay: var(--del, 0s);
+    }
+    .viz.active .viz-bar { opacity: 1; }
+    @keyframes vbar {
+      from { height: 3px; }
+      to { height: var(--h, 20px); }
+    }
+
+    /* ── PLAYER CONTROLS ── */
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+    .ctrl-btn {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--sub);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .ctrl-btn:active { transform: scale(.9); }
+    .ctrl-btn:hover { border-color: rgba(176,16,48,.4); color: var(--red); }
+    .ctrl-btn svg { pointer-events: none; }
+
+    .play-btn {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      border: none;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      transition: all .25s;
+      box-shadow: 0 8px 30px rgba(176,16,48,.5), 0 0 0 0 rgba(176,16,48,.3);
+      position: relative;
+    }
+    .play-btn::before {
+      content: '';
+      position: absolute; inset: -8px;
+      border-radius: 50%;
+      border: 1px solid rgba(176,16,48,.2);
+      transition: all .3s;
+    }
+    .play-btn.playing {
+      box-shadow: 0 8px 40px rgba(176,16,48,.7), 0 0 0 12px rgba(176,16,48,.1);
+    }
+    .play-btn.playing::before {
+      inset: -14px;
+      border-color: rgba(176,16,48,.15);
+      animation: ring-pulse 2s ease-in-out infinite;
+    }
+    @keyframes ring-pulse {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: .5; }
+    }
+    .play-btn:active { transform: scale(.93); }
+    .play-btn svg { pointer-events: none; }
+
+    /* ── VOLUME ── */
+    .volume-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+    .volume-wrap svg { color: var(--dim); flex-shrink: 0; }
+    .volume-slider {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 3px;
+      background: var(--brd);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px; height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,.4);
+      transition: transform .15s;
+    }
+    .volume-slider::-webkit-slider-thumb:active { transform: scale(1.3); }
+
+    /* ── BOTTOM TAB BAR ── */
+    .tab-bar {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      padding: 12px 24px;
+      border-top: 1px solid var(--brd);
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(20px);
+      gap: 0;
+    }
+    .tab-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 0;
+      text-decoration: none;
+      color: var(--dim);
+      transition: color .2s;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+    .tab-item.active { color: var(--red); }
+    .tab-item:active { opacity: .7; }
+    .tab-label {
+      font-family: 'Space Mono', monospace;
+      font-size: .52rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* ── LOADING STATE ── */
+    .loading-spinner {
+      width: 20px; height: 20px;
+      border: 2px solid rgba(176,16,48,.2);
+      border-top-color: var(--red);
+      border-radius: 50%;
+      animation: spin-loader .8s linear infinite;
+      display: none;
+    }
+    .loading .loading-spinner { display: block; }
+    .loading #playIcon { display: none; }
+    @keyframes spin-loader { to { transform: rotate(360deg); } }
+
+    /* ── TOAST ── */
+    .app-toast {
+      position: fixed;
+      bottom: 120px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(20,20,20,.95);
+      border: 1px solid rgba(176,16,48,.3);
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .08em;
+      color: var(--sub);
+      white-space: nowrap;
+      opacity: 0;
+      transition: all .3s ease;
+      pointer-events: none;
+      backdrop-filter: blur(20px);
+      z-index: 100;
+    }
+    .app-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── ENTRANCE ANIMATION ── */
+    .app > * {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: slide-up .5s ease forwards;
+    }
+    .top-bar    { animation-delay: .1s; }
+    .main       { animation-delay: .2s; transform: none; }
+    .tab-bar    { animation-delay: .3s; }
+    @keyframes slide-up {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .vinyl-wrap {
+      opacity: 0;
+      transform: scale(.85);
+      animation: pop-in .6s cubic-bezier(.175,.885,.32,1.275) .25s forwards;
+    }
+    @keyframes pop-in { to { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body>
+
+<!-- ANIMATED BG -->
+<div class="app-bg">
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+</div>
+<div class="bg-noise"></div>
+
+<!-- APP -->
+<div class="app">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="top-bar-logo">
+      <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM">
+      <span class="top-bar-title">Waveclub Radio</span>
+    </div>
+    <div class="top-bar-live">
+      <div class="live-dot"></div>
+      LIVE
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- VINYL -->
+    <div class="vinyl-wrap">
+      <div class="vinyl" id="vinyl">
+        <div class="vinyl-disc"></div>
+        <div class="vinyl-grooves"></div>
+        <div class="vinyl-label">
+          <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM">
+        </div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-shine"></div>
+      </div>
+      <div class="vinyl-glow"></div>
+      <!-- Needle -->
+      <div class="needle" id="needle">
+        <div class="needle-pivot"></div>
+        <div class="needle-arm"></div>
+        <div class="needle-head"></div>
+      </div>
+    </div>
+
+    <!-- TRACK INFO -->
+    <div class="track-info">
+      <div class="track-name" id="trackName">WAVECLUB RADIO</div>
+      <div class="track-sub" id="trackSub">Нажми play чтобы слушать</div>
+    </div>
+
+    <!-- VISUALIZER -->
+    <div class="viz" id="viz"></div>
+
+    <!-- CONTROLS -->
+    <div class="controls">
+      <!-- Shuffle / prev feel -->
+      <button class="ctrl-btn" id="shuffleBtn" aria-label="Предыдущий">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 6h2.5L12 9.5 9.5 12 6 8.5V6zm4.5 7.5L13 11l3.5 3.5V17H14L10.5 13.5zM16 6h2v2.5L14.5 12 12 9.5 16 6z"/>
+        </svg>
+      </button>
+
+      <!-- PLAY / PAUSE -->
+      <button class="play-btn" id="playBtn" aria-label="Воспроизвести">
+        <div class="loading-spinner" id="spinner"></div>
+        <svg id="playIcon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg id="pauseIcon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+      </button>
+
+      <!-- Volume icon -->
+      <button class="ctrl-btn" id="muteBtn" aria-label="Громкость">
+        <svg id="volIcon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- VOLUME -->
+    <div class="volume-wrap">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7 9v6h4l5 5V4l-5 5H7z"/>
+      </svg>
+      <input type="range" class="volume-slider" id="volSlider" min="0" max="100" value="70">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- TAB BAR -->
+  <div class="tab-bar">
+    <button class="tab-item active" onclick="showToast('Радио')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3.24 6.15C2.51 6.43 2 7.17 2 8v12a2 2 0 002 2h16a2 2 0 002-2V8c0-1.11-.89-2-2-2H8.3l8.26-3.34L15.88 1 3.24 6.15zM7 20c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm13-8h-2v-2h-2v2H4V8h16v4z"/>
+      </svg>
+      <span class="tab-label">Радио</span>
+    </button>
+    <a class="tab-item" href="index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+      <span class="tab-label">Главная</span>
+    </a>
+    <a class="tab-item" href="articles.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+      </svg>
+      <span class="tab-label">Статьи</span>
+    </a>
+    <a class="tab-item" href="index.html#services">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+      </svg>
+      <span class="tab-label">Услуги</span>
+    </a>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="app-toast" id="appToast"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── ELEMENTS ── */
+  var playBtn   = document.getElementById('playBtn');
+  var playIcon  = document.getElementById('playIcon');
+  var pauseIcon = document.getElementById('pauseIcon');
+  var spinner   = document.getElementById('spinner');
+  var vinyl     = document.getElementById('vinyl');
+  var needle    = document.getElementById('needle');
+  var viz       = document.getElementById('viz');
+  var trackName = document.getElementById('trackName');
+  var trackSub  = document.getElementById('trackSub');
+  var volSlider = document.getElementById('volSlider');
+  var muteBtn   = document.getElementById('muteBtn');
+  var shuffleBtn= document.getElementById('shuffleBtn');
+
+  /* ── BUILD VISUALIZER ── */
+  var bars = [];
+  for(var i = 0; i < 28; i++){
+    var span = document.createElement('span');
+    span.className = 'viz-bar';
+    var h  = Math.floor(Math.random() * 22) + 4;
+    var dur= (Math.random() * 0.5 + 0.5).toFixed(2);
+    var del= (Math.random() * 0.6).toFixed(2);
+    span.style.cssText = '--h:' + h + 'px;--dur:' + dur + 's;--del:' + del + 's';
+    viz.appendChild(span);
+    bars.push(span);
+  }
+
+  /* ── STATE ── */
+  var playing = false;
+  var muted   = false;
+  var audio   = null;
+
+  /* ── STREAM URL — замени на реальный когда будет ── */
+  var STREAM_URL = null; /* 'https://stream.example.com/live.mp3' */
+
+  var tracks = [
+    { name: 'WCM — Exclusive Mix', sub: 'WAVECLUB RADIO · Live' },
+    { name: 'Label Session Vol.1', sub: 'WAVECLUBMEDIA · Exclusive' },
+    { name: 'Independent Hits',    sub: 'WAVECLUB RADIO · Mix' },
+    { name: 'New Releases 2024',   sub: 'WAVECLUBMEDIA · Label' },
+    { name: 'Underground Vibes',   sub: 'WAVECLUB RADIO · Live' },
+  ];
+  var ti = 0;
+
+  function setTrack(t){
+    trackName.textContent = t.name;
+    trackSub.textContent  = t.sub;
+    /* Marquee if too long */
+    if(t.name.length > 20){
+      trackName.classList.add('long');
+    } else {
+      trackName.classList.remove('long');
+    }
+  }
+
+  /* ── PLAY / PAUSE ── */
+  function togglePlay(){
+    if(playing){
+      pause();
+    } else {
+      play();
+    }
+  }
+
+  function play(){
+    /* Show loading */
+    playBtn.classList.add('loading');
+    trackSub.textContent = 'Подключаемся...';
+
+    if(STREAM_URL && !audio){
+      audio = new Audio(STREAM_URL);
+      audio.volume = volSlider.value / 100;
+      audio.addEventListener('playing', onPlaying);
+      audio.addEventListener('error',   onError);
+    }
+
+    setTimeout(function(){
+      playBtn.classList.remove('loading');
+      onPlaying();
+    }, STREAM_URL ? 100 : 800);
+
+    if(audio) audio.play().catch(onError);
+  }
+
+  function onPlaying(){
+    playing = true;
+    playBtn.classList.remove('loading');
+    playBtn.classList.add('playing');
+    playIcon.style.display  = 'none';
+    pauseIcon.style.display = 'block';
+    vinyl.classList.add('playing');
+    needle.classList.add('on-disc');
+    viz.classList.add('active');
+    ti = (ti + 1) % tracks.length;
+    setTrack(tracks[ti]);
+  }
+
+  function pause(){
+    playing = false;
+    playBtn.classList.remove('playing');
+    playIcon.style.display  = 'block';
+    pauseIcon.style.display = 'none';
+    vinyl.classList.remove('playing');
+    needle.classList.remove('on-disc');
+    viz.classList.remove('active');
+    trackSub.textContent = 'Пауза';
+    if(audio) audio.pause();
+  }
+
+  function onError(){
+    playBtn.classList.remove('loading');
+    showToast('Стрим временно недоступен');
+    trackSub.textContent = 'Нет соединения';
+  }
+
+  /* ── VOLUME ── */
+  volSlider.addEventListener('input', function(){
+    var v = this.value / 100;
+    if(audio) audio.volume = v;
+    muted = (v === 0);
+  });
+
+  muteBtn.addEventListener('click', function(){
+    muted = !muted;
+    var v  = muted ? 0 : (volSlider.value / 100);
+    if(audio) audio.volume = v;
+    this.style.color = muted ? 'var(--red)' : '';
+    showToast(muted ? 'Звук выключен' : 'Звук включён');
+  });
+
+  /* Shuffle = next track */
+  shuffleBtn.addEventListener('click', function(){
+    if(!playing) return;
+    ti = (ti + 1) % tracks.length;
+    setTrack(tracks[ti]);
+    /* Brief vinyl wobble */
+    vinyl.style.animationDuration = '4s';
+    setTimeout(function(){ vinyl.style.animationDuration = '8s'; }, 1000);
+    showToast('Следующий трек');
+  });
+
+  /* Play button */
+  playBtn.addEventListener('click', togglePlay);
+
+  /* ── TOAST ── */
+  var toastEl  = document.getElementById('appToast');
+  var toastTimer;
+  function showToast(msg){
+    clearTimeout(toastTimer);
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2500);
+  }
+
+  /* ── KEYBOARD ── */
+  document.addEventListener('keydown', function(e){
+    if(e.code === 'Space') { e.preventDefault(); togglePlay(); }
+  });
+
+  /* ── INITIAL TRACK ── */
+  setTrack(tracks[0]);
+
+})();
+</script>
+</body>
+</html>
