@@ -745,5 +745,63 @@
         });
     });
   }
+
+  /* ── БАННЕР УСТАНОВКИ ── */
+  var banner      = document.getElementById('pwaBanner');
+  var installBtn  = document.getElementById('pwaInstall');
+  var dismissBtn  = document.getElementById('pwaDismiss');
+  var deferredPrompt = null;
+
+  /* Скрываем баннер если уже установлено или отклонено */
+  if(localStorage.getItem('wcm_pwa_dismissed') || 
+     window.matchMedia('(display-mode: standalone)').matches){
+    if(banner) banner.style.display = 'none';
+  }
+
+  /* Ловим событие beforeinstallprompt */
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+
+    /* Показываем баннер через 3 секунды */
+    setTimeout(function(){
+      if(banner && !localStorage.getItem('wcm_pwa_dismissed')){
+        banner.classList.add('show');
+      }
+    }, 3000);
+  });
+
+  /* Клик Установить */
+  if(installBtn){
+    installBtn.addEventListener('click', function(){
+      if(!deferredPrompt) return;
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function(result){
+        if(result.outcome === 'accepted'){
+          console.log('[WCM PWA] Installed!');
+          if(banner) banner.classList.remove('show');
+        }
+        deferredPrompt = null;
+      });
+    });
+  }
+
+  /* Клик Закрыть */
+  if(dismissBtn){
+    dismissBtn.addEventListener('click', function(){
+      if(banner) banner.classList.remove('show');
+      localStorage.setItem('wcm_pwa_dismissed', '1');
+    });
+  }
+
+  /* Приложение установлено */
+  window.addEventListener('appinstalled', function(){
+    console.log('[WCM PWA] App installed successfully');
+    if(banner) banner.classList.remove('show');
+    deferredPrompt = null;
+  });
+
+})();
+</script>
 </body>
 </html>
