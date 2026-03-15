@@ -479,3 +479,51 @@ console.log('%cMusic Brand • Recording Studio • Independent Label • Radio'
   // Запускаем сразу
   updateParallax();
 })();
+
+/* ── HORIZONTAL RELEASES SCROLL ── */
+(function(){
+  var track   = document.getElementById('relTrack');
+  var btnPrev = document.getElementById('relPrev');
+  var btnNext = document.getElementById('relNext');
+  if(!track) return;
+
+  var scrollStep = 220; // сколько пикселей за один клик стрелки
+
+  // Стрелки
+  if(btnNext) btnNext.addEventListener('click', function(){
+    track.scrollBy({ left: scrollStep, behavior: 'smooth' });
+  });
+  if(btnPrev) btnPrev.addEventListener('click', function(){
+    track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+  });
+
+  // Скролл колёсиком мыши → горизонтально
+  track.addEventListener('wheel', function(e){
+    if(e.deltaY === 0) return;
+    e.preventDefault();
+    track.scrollBy({ left: e.deltaY * 2, behavior: 'smooth' });
+  }, { passive: false });
+
+  // Перетаскивание мышью (drag to scroll)
+  var isDragging  = false;
+  var startX      = 0;
+  var scrollStart = 0;
+
+  track.addEventListener('mousedown', function(e){
+    isDragging  = true;
+    startX      = e.pageX;
+    scrollStart = track.scrollLeft;
+    track.classList.add('dragging');
+  });
+
+  window.addEventListener('mousemove', function(e){
+    if(!isDragging) return;
+    var dx = e.pageX - startX;
+    track.scrollLeft = scrollStart - dx;
+  });
+
+  window.addEventListener('mouseup', function(){
+    isDragging = false;
+    track.classList.remove('dragging');
+  });
+})();
