@@ -421,6 +421,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
   .gal-wide{grid-column:span 2}
 }
 @media(max-width:900px){
+   .nav-right { margin-left: auto; }
   .nav-links{display:none}
   .burger{display:flex}
   .mob-menu{display:block}
