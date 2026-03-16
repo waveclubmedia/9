@@ -481,6 +481,120 @@
 })();
 </script>
 <script>
+(function() {
+  'use strict';
+
+  // ---- Элементы плеера (ID из HTML) ----
+  const playBtn = document.getElementById('heroPlay');
+  const playIco = document.getElementById('heroPlayIco');
+  const pauseIco = document.getElementById('heroPauseIco');
+  const viz = document.getElementById('heroViz');
+  const trackSub = document.getElementById('heroTrackSub');
+  const volSlider = document.getElementById('heroVol');
+
+  if (!playBtn) return; // если плеера нет – выходим
+
+  // ---- Настройки потока ----
+  const STREAM_URL = 'http://www.1.fm/tunestream/jamz/listen.pls';  // ваша ссылка
+  const STATION_NAME = '1.FM Jamz Radio'; // название станции
+
+  // Создаём аудиоэлемент
+  const audio = new Audio(STREAM_URL);
+  audio.preload = 'none'; // не грузить до команды play
+
+  let playing = false;
+
+  // ---- Восстановление громкости из localStorage ----
+  const savedVol = localStorage.getItem('wcm_radio_volume');
+  if (savedVol !== null) {
+    audio.volume = Math.min(1, Math.max(0, parseFloat(savedVol)));
+    if (volSlider) volSlider.value = audio.volume * 100;
+  } else {
+    audio.volume = 0.7; // по умолчанию
+    if (volSlider) volSlider.value = 70;
+  }
+
+  // ---- События аудио ----
+  audio.addEventListener('canplay', () => {
+    if (trackSub) trackSub.textContent = `🎵 В эфире: ${STATION_NAME}`;
+  });
+
+  audio.addEventListener('error', (e) => {
+    console.error('Ошибка воспроизведения:', e);
+    if (trackSub) trackSub.textContent = '❌ Ошибка потока';
+    playing = false;
+    if (playIco) playIco.style.display = 'block';
+    if (pauseIco) pauseIco.style.display = 'none';
+    if (viz) viz.classList.remove('playing');
+  });
+
+  // ---- Функция переключения play/pause ----
+  function togglePlay() {
+    if (playing) {
+      audio.pause();
+    } else {
+      audio.play().catch(err => {
+        console.warn('Ошибка запуска:', err);
+        playing = false;
+        if (playIco) playIco.style.display = 'block';
+        if (pauseIco) pauseIco.style.display = 'none';
+        if (viz) viz.classList.remove('playing');
+        if (trackSub) trackSub.textContent = '❌ Не удалось запустить радио';
+      });
+    }
+    playing = !playing;
+    if (playIco) playIco.style.display = playing ? 'none' : 'block';
+    if (pauseIco) pauseIco.style.display = playing ? 'block' : 'none';
+    if (viz) viz.classList.toggle('playing', playing);
+    if (trackSub && trackSub.textContent.includes('загрузка') && playing) {
+      trackSub.textContent = `🎵 В эфире: ${STATION_NAME}`;
+    }
+  }
+
+  // Клик по кнопке play
+  playBtn.addEventListener('click', togglePlay);
+
+  // ---- Ползунок громкости ----
+  if (volSlider) {
+    volSlider.addEventListener('input', () => {
+      const vol = parseFloat(volSlider.value) / 100;
+      audio.volume = Math.min(1, Math.max(0, vol));
+      localStorage.setItem('wcm_radio_volume', vol);
+    });
+  }
+
+  // ---- Клик по бейджу "RADIO LIVE" в навбаре - скролл к плееру ----
+  const liveBadge = document.querySelector('.live-badge');
+  if (liveBadge) {
+    liveBadge.addEventListener('click', (e) => {
+      e.preventDefault(); // предотвращаем переход по ссылке (href="radio.html")
+      // Плавный скролл к плееру (можно к #radio-top или к самому playBtn)
+      const target = document.getElementById('radio-top') || playBtn;
+      if (target) {
+        const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav')) || 68;
+        const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+      // Если радио не играет – запускаем
+      if (!playing) {
+        togglePlay();
+      }
+    });
+  }
+
+  // ---- Остановка аудио при уходе со страницы (чтобы не фонило) ----
+  window.addEventListener('beforeunload', () => {
+    if (playing) {
+      audio.pause();
+    }
+  });
+
+  // ---- Убираем старый обработчик, который переключал треки (если он был) ----
+  // Можно просто перезаписать, но на всякий случай удалим ранее назначенные
+  // Так как мы полностью заменяем скрипт, это не обязательно.
+})();
+</script>
+<script>
 /* ── CUSTOM CURSOR ── */
 (function(){
   var dot  = document.getElementById('cursorDot');
