@@ -12,7 +12,10 @@
     <div class="preloader-label" id="preloaderLabel">0%</div>
   </div>
 </div>
-<div class="cursor-ring" id="cursorRing"></div><nav class="navbar" id="navbar"><div class="nav-wrap"><a href="index.html" class="nav-logo"><img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/Title%202.png" alt="WAVECLUBMEDIA" class="logo-wide"><img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM" class="logo-sq"></a><div class="nav-links"><div class="ndrop"><button class="ndrop-btn">Услуги <span>&#9662;</span></button><div class="ndrop-menu"><a href="index.html#services">Все услуги</a><a href="index.html#recording">Запись</a><a href="index.html#mixing">Сведение</a><a href="index.html#promotion">Продвижение</a><a href="index.html#radio-section">Ротация</a></div></div><div class="ndrop"><button class="ndrop-btn">О нас <span>&#9662;</span></button><div class="ndrop-menu"><a href="index.html#about">О студии</a><a href="index.html#contacts">Контакты</a></div></div><div class="ndrop"><button class="ndrop-btn">Ещё <span>&#9662;</span></button><div class="ndrop-menu"><a href="articles.html" style="color:var(--red)">Статьи</a><a href="index.html#faq">FAQ</a><a href="merch.html">МЕРЧ</a></div></div></div><div class="nav-right"><a href="radio.html" class="live-badge" style="text-decoration:none"><span class="dot-pulse"></span>RADIO LIVE</a><button class="btn-coop" id="openCoop">Для сотрудничества</button><button class="burger" id="burger"><span></span><span></span><span></span></button></div></div><div class="mob-menu" id="mobMenu"><div class="mob-menu-inner"><div class="mob-group"><span class="mob-label">Меню</span><a href="index.html" class="mob-link">Главная</a><a href="index.html#services" class="mob-link">Услуги</a><a href="articles.html" class="mob-link">Статьи</a><a href="radio.html" class="mob-link">WAVECLUB RADIO</a><a href="index.html#contacts" class="mob-link">Контакты</a><a href="merch.html" class="mob-link">МЕРЧ</a></div><button class="btn-coop mob-coop-btn" id="openCoopMob">Записаться</button></div></div></nav>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+  
+  <nav class="navbar" id="navbar"><div class="nav-wrap"><a href="index.html" class="nav-logo"><img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/Title%202.png" alt="WAVECLUBMEDIA" class="logo-wide"><img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM" class="logo-sq"></a><div class="nav-links"><div class="ndrop"><button class="ndrop-btn">Услуги <span>&#9662;</span></button><div class="ndrop-menu"><a href="index.html#services">Все услуги</a><a href="index.html#recording">Запись</a><a href="index.html#mixing">Сведение</a><a href="index.html#promotion">Продвижение</a><a href="index.html#radio-section">Ротация</a></div></div><div class="ndrop"><button class="ndrop-btn">О нас <span>&#9662;</span></button><div class="ndrop-menu"><a href="index.html#about">О студии</a><a href="index.html#contacts">Контакты</a></div></div><div class="ndrop"><button class="ndrop-btn">Ещё <span>&#9662;</span></button><div class="ndrop-menu"><a href="articles.html" style="color:var(--red)">Статьи</a><a href="index.html#faq">FAQ</a><a href="merch.html">МЕРЧ</a></div></div></div><div class="nav-right"><a href="radio.html" class="live-badge" style="text-decoration:none"><span class="dot-pulse"></span>RADIO LIVE</a><button class="btn-coop" id="openCoop">Для сотрудничества</button><button class="burger" id="burger"><span></span><span></span><span></span></button></div></div><div class="mob-menu" id="mobMenu"><div class="mob-menu-inner"><div class="mob-group"><span class="mob-label">Меню</span><a href="index.html" class="mob-link">Главная</a><a href="index.html#services" class="mob-link">Услуги</a><a href="articles.html" class="mob-link">Статьи</a><a href="radio.html" class="mob-link">WAVECLUB RADIO</a><a href="index.html#contacts" class="mob-link">Контакты</a><a href="merch.html" class="mob-link">МЕРЧ</a></div><button class="btn-coop mob-coop-btn" id="openCoopMob">Записаться</button></div></div></nav>
 <section class="page-hero" style="background:var(--bg);padding:calc(var(--nav) + 80px) 0 60px">
   <div class="page-hero-bg" style="background-image:url('18.jpg')"></div>
   <div class="page-hero-overlay"></div>
@@ -82,6 +85,48 @@
       }, 200);
     }
   }, 30);
+})();
+</script>
+  <script>
+/* ── CUSTOM CURSOR ── */
+(function(){
+  var dot  = document.getElementById('cursorDot');
+  var ring = document.getElementById('cursorRing');
+  if(!dot || !ring) return;
+
+  // Мышь с телефона / планшета — не запускаем
+  if(window.matchMedia('(pointer: coarse)').matches) return;
+
+  var mouseX = 0, mouseY = 0;   // позиция мыши
+  var ringX  = 0, ringY  = 0;   // позиция кольца (с лагом)
+
+  // Точка — моментально
+  document.addEventListener('mousemove', function(e){
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.left = mouseX + 'px';
+    dot.style.top  = mouseY + 'px';
+  });
+
+  // Кольцо — с плавным лагом через requestAnimationFrame
+  function animateRing(){
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top  = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Курсор исчезает когда мышь уходит за пределы окна
+  document.addEventListener('mouseleave', function(){
+    dot.style.opacity  = '0';
+    ring.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', function(){
+    dot.style.opacity  = '1';
+    ring.style.opacity = '1';
+  });
 })();
 </script>
 </body>
