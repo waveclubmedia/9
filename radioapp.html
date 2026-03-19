@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -702,7 +703,7 @@
   var audio   = null;
 
   /* ── STREAM URL — замени на реальный когда будет ── */
-  var STREAM_URL = 'https://strm112.1.fm:80/jamz_mobile_mp3'; /* 'https://stream.example.com/live.mp3' */
+  var STREAM_URL = 'http://strm112.1.fm:80/jamz_mobile_mp3'; /* 'https://stream.example.com/live.mp3' */
 
   var tracks = [
     { name: 'WCM — Exclusive Mix', sub: 'WAVECLUB RADIO · Live' },
