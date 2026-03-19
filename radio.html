@@ -12,6 +12,28 @@
   <title>WAVECLUB RADIO — WAVECLUBMEDIA</title>
   <meta name="description" content="WAVECLUB RADIO — музыкальное радио WAVECLUBMEDIA. Слушай эксклюзивные треки лейбла 24/7. Закажи ротацию своего трека.">
 </head>
+<style>
+/* ── MODAL ── */
+.modal{position:fixed;inset:0;z-index:10002;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .28s ease}
+.modal.open{opacity:1;pointer-events:all}
+.modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.86);backdrop-filter:blur(8px)}
+.modal-box{position:relative;z-index:1;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--r2);padding:44px 36px;width:min(480px,calc(100vw - 40px));max-height:90vh;overflow-y:auto;transform:translateY(24px) scale(.97);transition:transform .32s cubic-bezier(.4,0,.2,1);box-shadow:0 30px 90px rgba(0,0,0,.6)}
+.modal.open .modal-box{transform:translateY(0) scale(1)}
+.modal-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);border-radius:var(--r2) var(--r2) 0 0}
+.modal-x{position:absolute;top:14px;right:14px;width:30px;height:30px;border:1px solid var(--brd2);border-radius:50%;color:var(--dim);font-size:.78rem;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.modal-x:hover{border-color:var(--red);color:var(--red)}
+.modal-title{font-family:var(--fd);font-size:1.7rem;font-weight:800;letter-spacing:-.02em;color:var(--txt);text-align:center;margin-bottom:6px}
+.modal-sub{font-family:var(--fm);font-size:.68rem;color:var(--dim);text-align:center;letter-spacing:.05em;margin-bottom:24px}
+.mform{display:flex;flex-direction:column;gap:11px}
+.minput{width:100%;padding:12px 15px;background:var(--bg3);border:1px solid var(--brd2);border-radius:var(--r);color:var(--txt);font-family:var(--fb);font-size:.86rem;outline:none;transition:border-color .2s;-webkit-appearance:none}
+.minput:focus{border-color:var(--red)}
+.minput::placeholder{color:var(--dim)}
+.mtextarea{resize:vertical;min-height:90px}
+select.minput{cursor:pointer}
+select.minput option{background:var(--bg2);color:var(--txt)}
+.mprivacy{font-size:.7rem;color:var(--dim);line-height:1.5}
+.mprivacy a{color:var(--red);text-decoration:underline}
+</style>
 <body>
   <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
