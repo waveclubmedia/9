@@ -575,8 +575,8 @@
       .merch-hero-scroll { display: none; }
     }
   </style>
-  <style>
-  /* ── MODAL ── */
+<style>
+/* ── MODAL ── */
 .modal{position:fixed;inset:0;z-index:10002;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .28s ease}
 .modal.open{opacity:1;pointer-events:all}
 .modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.86);backdrop-filter:blur(8px)}
@@ -766,7 +766,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
       <div class="pcard featured anim" data-cat="apparel" data-delay="0.05">
         <div class="pcard-img">
           <span class="pcard-tag new">New</span>
-          <a href="#" class="btn-red openBooking">Заказать</a>
+          <button class="pcard-action" aria-label="Заказать">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
           <!-- ════════════════════════════════════════════════
@@ -789,7 +789,10 @@ select.minput option{background:var(--bg2);color:var(--txt)}
           </div>
           <div class="pcard-footer">
             <div class="pcard-price">4 990 &#8381;</div>
-            <a href="#" class="btn-red openBooking">Заказать</a>
+            <a href="index.html#contacts" target="_blank" class="pcard-order">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Заказать
+            </a>
           </div>
         </div>
       </div>
@@ -798,13 +801,16 @@ select.minput option{background:var(--bg2);color:var(--txt)}
       <div class="pcard anim" data-cat="apparel" data-delay="0.1">
         <div class="pcard-img">
           <span class="pcard-tag hot">Hot</span>
-          <a href="#" class="btn-red openBooking">Заказать</a>
+          <button class="pcard-action" aria-label="Заказать">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
           <!-- ════════════════════════════════════════════════
                ФОТО ФУТБОЛКИ
                Замени на: <img src="tshirt.jpg" alt="Футболка WCM" style="width:100%;height:100%;object-fit:cover;">
           ════════════════════════════════════════════════ -->
           <div class="photo-placeholder">
-            <img src="tee.jpg" alt="Футболка WCM" style="width:100%;height:100%;object-fit:cover;"
+            <img src="tee.jpg" alt="Футболка WCM" style="width:100%;height:100%;object-fit:cover;">
+          </div>
         </div>
         <div class="pcard-body">
           <div class="pcard-cat">Apparel</div>
@@ -812,7 +818,10 @@ select.minput option{background:var(--bg2);color:var(--txt)}
           <div class="pcard-desc">Оверсайз-футболка из 100% хлопка. Минималистичный принт лого. Чёрный / белый. S &mdash; XL.</div>
           <div class="pcard-footer">
             <div class="pcard-price">2 490 &#8381;</div>
-            <a href="#" class="btn-red openBooking">Заказать</a>
+            <a href="#" class="btn-red openBooking">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Заказать
+            </a>
           </div>
         </div>
       </div>
@@ -821,7 +830,9 @@ select.minput option{background:var(--bg2);color:var(--txt)}
       <div class="pcard anim" data-cat="accessories" data-delay="0.15">
         <div class="pcard-img">
           <span class="pcard-tag new">New</span>
-          <a href="#" class="btn-red openBooking">Заказать</a>
+          <button class="pcard-action" aria-label="Заказать">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
           <!-- ════════════════════════════════════════════════
                ФОТО ШОППЕРА
                Замени на: <img src="shopper.jpg" alt="Шоппер WCM" style="width:100%;height:100%;object-fit:cover;">
@@ -839,7 +850,10 @@ select.minput option{background:var(--bg2);color:var(--txt)}
           <div class="pcard-desc">Холщовый шоппер с логотипом. Плотная ткань, длинные ручки. Чёрный / натуральный.</div>
           <div class="pcard-footer">
             <div class="pcard-price">990 &#8381;</div>
-            <a href="#" class="btn-red openBooking">Заказать</a>
+            <a href="#" class="btn-red openBooking">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Заказать
+            </a>
           </div>
         </div>
       </div>
@@ -867,7 +881,10 @@ select.minput option{background:var(--bg2);color:var(--txt)}
           <div class="pcard-desc">Керамическая кружка 330мл. Логотип WCM и надпись WAVECLUBMEDIA. Чёрная с красным принтом.</div>
           <div class="pcard-footer">
             <div class="pcard-price">890 &#8381;</div>
-            <a href="#" class="btn-red openBooking">Заказать</a>
+            <a href="#" class="btn-red openBooking">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Заказать
+            </a>
           </div>
         </div>
       </div>
@@ -883,10 +900,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
                Замени на: <img src="notebook.jpg" alt="Блокнот WCM" style="width:100%;height:100%;object-fit:cover;">
           ════════════════════════════════════════════════ -->
           <div class="photo-placeholder">
-            <div class="photo-placeholder-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            </div>
-            <div class="photo-placeholder-label">Фото блокнота<br>notebook.jpg</div>
+            <img src="book.png" alt="Футболка WCM" style="width:100%;height:100%;object-fit:cover;">
           </div>
         </div>
         <div class="pcard-body">
@@ -895,7 +909,10 @@ select.minput option{background:var(--bg2);color:var(--txt)}
           <div class="pcard-desc">Блокнот A5 на 128 страниц. Плотная обложка с тиснением логотипа. Чёрный, нелинованный.</div>
           <div class="pcard-footer">
             <div class="pcard-price">790 &#8381;</div>
-            <a href="#" class="btn-red openBooking">Заказать</a>
+            <a href="#" class="btn-red openBooking">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Заказать
+            </a>
           </div>
         </div>
       </div>
@@ -911,10 +928,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
                Замени на: <img src="pen.jpg" alt="Ручка WCM" style="width:100%;height:100%;object-fit:cover;">
           ════════════════════════════════════════════════ -->
           <div class="photo-placeholder">
-            <div class="photo-placeholder-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            </div>
-            <div class="photo-placeholder-label">Фото ручки<br>pen.jpg</div>
+            <img src="pen.png" alt="Футболка WCM" style="width:100%;height:100%;object-fit:cover;">
           </div>
         </div>
         <div class="pcard-body">
@@ -923,7 +937,10 @@ select.minput option{background:var(--bg2);color:var(--txt)}
           <div class="pcard-desc">Металлическая шариковая ручка с гравировкой WAVECLUBMEDIA. Чёрная, матовый корпус.</div>
           <div class="pcard-footer">
             <div class="pcard-price">490 &#8381;</div>
-            <a href="#" class="btn-red openBooking">Заказать</a>
+            <a href="#" class="btn-red openBooking">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Заказать
+            </a>
           </div>
         </div>
       </div>
@@ -1029,7 +1046,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
       </div>
     </div>
   </div>
-  <div class="modal" id="modal-booking">
+<div class="modal" id="modal-booking">
   <div class="modal-bg" id="mbg"></div>
   <div class="modal-box">
     <button class="modal-x" id="closeBooking">&#10005;</button>
@@ -1148,7 +1165,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
   });
 })();
 </script>
-    <script>
+<script>
 /* ── MODALS ── */
 function openModal(id){
   const m=$('#'+id); if(!m) return;
