@@ -741,5 +741,21 @@ document.getElementById('openBooking')?.addEventListener('click', function(e){
   openModal('modal-booking');
 });
 </script>
+<script>
+const modal = document.getElementById('modal-booking');
+const closeBtn = document.getElementById('closeBooking');
+const bg = document.getElementById('mbg');
 
+// закрытие по крестику
+closeBtn?.addEventListener('click', () => {
+  modal.classList.remove('open');
+  document.body.classList.remove('locked');
+});
+
+// закрытие по фону
+bg?.addEventListener('click', () => {
+  modal.classList.remove('open');
+  document.body.classList.remove('locked');
+});
+</script>
 </body></html>
