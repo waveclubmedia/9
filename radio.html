@@ -266,7 +266,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
           <li>Базовая частота эфира</li>
           <li>Статистика прослушиваний</li>
         </ul>
-        <a href="#" id="openBooking" class="btn-red" style="text-decoration:none;justify-content:center;display:flex">Заказать</a>
+        <a href="#" class="btn-red openBooking">Заказать</a>
       </div>
       <div class="rprice-card featured anim" data-delay="0.1">
         <span class="rprice-badge">Популярный</span>
@@ -279,7 +279,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
           <li>Детальная статистика</li>
           <li>Упоминание в соцсетях WCM</li>
         </ul>
-        <a href="#" id="openBooking" class="btn-red" style="text-decoration:none;justify-content:center;display:flex">Заказать</a>
+        <a href="#" class="btn-red openBooking">Заказать</a>
       </div>
       <div class="rprice-card anim" data-delay="0.15">
         <span class="rprice-name">Лейбл</span>
@@ -292,7 +292,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
           <li>Личный менеджер</li>
           <li>Интервью в прямом эфире</li>
         </ul>
-        <a href="#" id="openBooking" class="btn-red" style="text-decoration:none;justify-content:center;display:flex">Заказать</a>
+        <a href="#" class="btn-red openBooking">Заказать</a>
       </div>
     </div>
   </div>
@@ -322,7 +322,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
       <h2 class="stitle">ТВОЙ ТРЕК — В ЭФИРЕ</h2>
       <p class="sdesc" style="max-width:500px;margin:0 auto 32px;">Не откладывай. Свяжись с нами прямо сейчас и получи консультацию по ротации бесплатно.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a href="#" id="openBooking" class="btn-red" style="text-decoration:none;justify-content:center;display:flex">Заказать ротацию</a>
+        <a href="#" class="btn-red openBooking">Заказать ротацию</a>
       </div>
     </div>
   </div>
@@ -736,12 +736,6 @@ $$('[data-detail]').forEach(btn=>{
 });
 </script>
 <script>
-document.getElementById('openBooking')?.addEventListener('click', function(e){
-  e.preventDefault();
-  openModal('modal-booking');
-});
-</script>
-<script>
 const modal = document.getElementById('modal-booking');
 const closeBtn = document.getElementById('closeBooking');
 const bg = document.getElementById('mbg');
@@ -756,6 +750,14 @@ closeBtn?.addEventListener('click', () => {
 bg?.addEventListener('click', () => {
   modal.classList.remove('open');
   document.body.classList.remove('locked');
+});
+</script>
+<script>
+document.querySelectorAll('.openBooking').forEach(btn => {
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    openModal('modal-booking');
+  });
 });
 </script>
 </body></html>
