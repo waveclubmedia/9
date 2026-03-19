@@ -266,7 +266,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
           <li>Базовая частота эфира</li>
           <li>Статистика прослушиваний</li>
         </ul>
-        <a ref="index.html#contacts" target="_blank" class="btn-red" style="text-decoration:none;justify-content:center;display:flex">Заказать</a>
+        <a href="#" id="openBooking" class="btn-red" style="text-decoration:none;justify-content:center;display:flex">Заказать</a>
       </div>
       <div class="rprice-card featured anim" data-delay="0.1">
         <span class="rprice-badge">Популярный</span>
@@ -292,7 +292,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
           <li>Личный менеджер</li>
           <li>Интервью в прямом эфире</li>
         </ul>
-        <a href="index.html#contacts" target="_blank" class="btn-red" style="text-decoration:none;justify-content:center;display:flex">Заказать</a>
+        <a href="#" id="openBooking" class="btn-red" style="text-decoration:none;justify-content:center;display:flex">Заказать</a>
       </div>
     </div>
   </div>
@@ -322,7 +322,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
       <h2 class="stitle">ТВОЙ ТРЕК — В ЭФИРЕ</h2>
       <p class="sdesc" style="max-width:500px;margin:0 auto 32px;">Не откладывай. Свяжись с нами прямо сейчас и получи консультацию по ротации бесплатно.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a href="index.html#contacts" target="_blank" class="btn-red" style="text-decoration:none">Заказать ротацию</a>
+        <a href="#" id="openBooking" class="btn-red" style="text-decoration:none;justify-content:center;display:flex">Заказать ротацию</a>
       </div>
     </div>
   </div>
@@ -627,6 +627,8 @@ select.minput option{background:var(--bg2);color:var(--txt)}
 })();
 </script>
 <script>
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
 /* ── CUSTOM CURSOR ── */
 (function(){
   var dot  = document.getElementById('cursorDot');
@@ -689,8 +691,11 @@ function closePriv(){
 }
 
 // Booking triggers
-['heroBook','aboutBook','footerBook'].forEach(id=>{
-  const el=$(id?'#'+id:null); el&&el.addEventListener('click',()=>openModal('modal-booking'));
+['heroBook','aboutBook','footerBook','openBooking'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el){
+    el.addEventListener('click',()=>openModal('modal-booking'));
+  }
 });
 // Radio order
 const rob=$('#radioOrderBtn'); rob&&rob.addEventListener('click',()=>{ openModal('modal-booking'); preselect('Ротация на радио'); });
@@ -730,4 +735,11 @@ $$('[data-detail]').forEach(btn=>{
   });
 });
 </script>
+<script>
+document.getElementById('openBooking')?.addEventListener('click', function(e){
+  e.preventDefault();
+  openModal('modal-booking');
+});
+</script>
+
 </body></html>
