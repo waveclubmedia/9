@@ -808,8 +808,11 @@ select.minput option{background:var(--bg2);color:var(--txt)}
                ФОТО ФУТБОЛКИ
                Замени на: <img src="tshirt.jpg" alt="Футболка WCM" style="width:100%;height:100%;object-fit:cover;">
           ════════════════════════════════════════════════ -->
-          <div class="photo-placeholder">
-            <img src="tee.jpg" alt="Футболка WCM" style="width:100%;height:100%;object-fit:cover;">
+         <div class="photo-placeholder">
+            <div class="photo-placeholder-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="photo-placeholder-label">Фото худи<br>hoodie.jpg</div>
           </div>
         </div>
         <div class="pcard-body">
@@ -900,8 +903,10 @@ select.minput option{background:var(--bg2);color:var(--txt)}
                Замени на: <img src="notebook.jpg" alt="Блокнот WCM" style="width:100%;height:100%;object-fit:cover;">
           ════════════════════════════════════════════════ -->
           <div class="photo-placeholder">
-            <img src="book.png" alt="Футболка WCM" style="width:100%;height:100%;object-fit:cover;">
-          </div>
+            <div class="photo-placeholder-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="photo-placeholder-label">Фото худи<br>hoodie.jpg</div>
           </div>
         </div>
         <div class="pcard-body">
@@ -929,8 +934,10 @@ select.minput option{background:var(--bg2);color:var(--txt)}
                Замени на: <img src="pen.jpg" alt="Ручка WCM" style="width:100%;height:100%;object-fit:cover;">
           ════════════════════════════════════════════════ -->
           <div class="photo-placeholder">
-            <img src="pen.png" alt="Футболка WCM" style="width:100%;height:100%;object-fit:cover;">
-          </div>
+            <div class="photo-placeholder-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="photo-placeholder-label">Фото худи<br>hoodie.jpg</div>
           </div>
         </div>
         <div class="pcard-body">
@@ -1065,7 +1072,33 @@ select.minput option{background:var(--bg2);color:var(--txt)}
     </div>
   </div>
 </div>
-</footer><script>
+</footer>
+<script>
+  // Убеждаемся, что функция openModal существует
+  if (typeof openModal !== 'function') {
+    window.openModal = function(id) {
+      const m = document.getElementById(id);
+      if (m) {
+        m.classList.add('open');
+        document.body.classList.add('locked');
+      }
+    };
+  }
+
+  // Ждём полной загрузки DOM и навешиваем обработчики на все кнопки .openBooking
+  document.addEventListener('DOMContentLoaded', function() {
+    const orderBtns = document.querySelectorAll('.openBooking');
+    console.log('🔍 Найдено кнопок .openBooking:', orderBtns.length);
+    orderBtns.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('✅ Клик по кнопке "Заказать"');
+        openModal('modal-booking');
+      });
+    });
+  });
+</script>
+<script>
 (function(){
   var nav=document.getElementById('navbar');
   function run(){ if(nav) nav.classList.toggle('scrolled',window.scrollY>60); }
