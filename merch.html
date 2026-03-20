@@ -11,6 +11,28 @@
   <title>Merch — WAVECLUBMEDIA</title>
   <meta name="description" content="Официальный мерч WAVECLUBMEDIA. Худи, футболки, шопперы, кружки и аксессуары бренда.">
   <style>
+/* ── MODAL ── */
+.modal{position:fixed;inset:0;z-index:10002;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .28s ease}
+.modal.open{opacity:1;pointer-events:all}
+.modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.86);backdrop-filter:blur(8px)}
+.modal-box{position:relative;z-index:1;background:var(--bg2);border:1px solid var(--brd2);border-radius:var(--r2);padding:44px 36px;width:min(480px,calc(100vw - 40px));max-height:90vh;overflow-y:auto;transform:translateY(24px) scale(.97);transition:transform .32s cubic-bezier(.4,0,.2,1);box-shadow:0 30px 90px rgba(0,0,0,.6)}
+.modal.open .modal-box{transform:translateY(0) scale(1)}
+.modal-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);border-radius:var(--r2) var(--r2) 0 0}
+.modal-x{position:absolute;top:14px;right:14px;width:30px;height:30px;border:1px solid var(--brd2);border-radius:50%;color:var(--dim);font-size:.78rem;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.modal-x:hover{border-color:var(--red);color:var(--red)}
+.modal-title{font-family:var(--fd);font-size:1.7rem;font-weight:800;letter-spacing:-.02em;color:var(--txt);text-align:center;margin-bottom:6px}
+.modal-sub{font-family:var(--fm);font-size:.68rem;color:var(--dim);text-align:center;letter-spacing:.05em;margin-bottom:24px}
+.mform{display:flex;flex-direction:column;gap:11px}
+.minput{width:100%;padding:12px 15px;background:var(--bg3);border:1px solid var(--brd2);border-radius:var(--r);color:var(--txt);font-family:var(--fb);font-size:.86rem;outline:none;transition:border-color .2s;-webkit-appearance:none}
+.minput:focus{border-color:var(--red)}
+.minput::placeholder{color:var(--dim)}
+.mtextarea{resize:vertical;min-height:90px}
+select.minput{cursor:pointer}
+select.minput option{background:var(--bg2);color:var(--txt)}
+.mprivacy{font-size:.7rem;color:var(--dim);line-height:1.5}
+.mprivacy a{color:var(--red);text-decoration:underline}
+</style>
+  <style>
     /* ─────────────────────────────────────────────
        MERCH PAGE — standalone styles
     ───────────────────────────────────────────── */
@@ -577,6 +599,23 @@
   </style>
 </head>
 <body>
+  <div class="modal" id="modal-booking">
+  <div class="modal-bg" id="mbg"></div>
+  <div class="modal-box">
+    <button class="modal-x" id="closeBooking">&#10005;</button>
+    <img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" alt="WCM" width="44" style="margin:0 auto 16px;display:block;border-radius:50%;">
+    <h3 class="modal-title" id="modalTitle">Забронировать время</h3>
+    <p class="modal-sub">Свяжитесь с нами! &mdash; ответим в ближайшее время</p>
+	<div class="foot-contacts">
+          <h4>Контакты</h4>
+          <p><span>Телефон</span><a href="tel:+79527910301">+7 (952) 791-03-01</a></p>
+	<p><span>Заказ мерча</span><a href="mailto:md@waveclubmedia.ru">md@waveclubmedia.ru</a></p>
+          <p><span>Почта</span><a href="mailto:mgmt@waveclubmedia.ru">mgmt@waveclubmedia.ru</a></p>
+          <p><span>Биты</span><a href="mailto:beats@waveclubmedia.ru">beats@waveclubmedia.ru</a></p>
+          <p><span>Режим</span><span>Работаем 24/7</span></p>
+    </div>
+  </div>
+</div>
   <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <nav class="navbar" id="navbar">
@@ -1116,5 +1155,95 @@
     ring.style.opacity = '1';
   });
 })();
+</script>
+<script>
+/* ── MODALS ── */
+function openModal(id){
+  const m=$('#'+id); if(!m) return;
+  m.classList.add('open'); document.body.classList.add('locked');
+}
+function closeModal(id){
+  const m=$('#'+id); if(!m) return;
+  m.classList.remove('open');
+  if(!$('.modal.open')) document.body.classList.remove('locked');
+}
+function openPriv(){
+  const o=$('#privOverlay'); if(!o) return;
+  o.classList.add('open'); document.body.classList.add('locked');
+}
+function closePriv(){
+  const o=$('#privOverlay'); if(!o) return;
+  o.classList.remove('open'); document.body.classList.remove('locked');
+}
+
+// Booking triggers
+['heroBook','aboutBook','footerBook','openBooking'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el){
+    el.addEventListener('click',()=>openModal('modal-booking'));
+  }
+});
+// Radio order
+const rob=$('#radioOrderBtn'); rob&&rob.addEventListener('click',()=>{ openModal('modal-booking'); preselect('Ротация на радио'); });
+// Service buttons
+$$('[data-service]').forEach(btn=>{
+  btn.addEventListener('click',()=>{ openModal('modal-booking'); preselect(btn.dataset.service); });
+});
+function preselect(val){
+  const sel=$('#bService'); if(!sel) return;
+  for(let i=0;i<sel.options.length;i++){ if(sel.options[i].text===val){ sel.selectedIndex=i; break; } }
+}
+
+// Detail modals
+const details={
+  recording:{t:'Запись на студии',c:'<p>Студийная сессия включает:</p><ul><li>Запись вокала/инструментов;</li><li>Профессиональный звукорежиссёр;</li><li>Помощь и советы по ходу записи;</li><li>Детальная проработка и финальный звук.</li></ul><p><strong>Цены:</strong> от 1 500 ₽/час. Минимум 1 час.</p>'},
+  mixing:{t:'Сведение и мастеринг',c:'<p>Включает:</p><ul><li>Сведение дорожек (голос + бит);</li><li>Тональная коррекция (auto-tune);</li><li>Частотная, динамическая обработка;</li><li>Саунд-дизайн, эффекты на голосе;</li><li>Мастеринг финального материала.</li></ul><p><strong>Цены:</strong> Сведение+Мастеринг — 7 990 ₽ | Только сведение — 5 990 ₽ | Только мастеринг — 2 990 ₽.<br>Сроки: до 5 дней.</p>'},
+  beats:{t:'Создание бита',c:'<p>Профессиональный бит под ваш стиль:</p><ul><li>Анализ референсов и стиля;</li><li>Оригинальный бит;</li><li>До 3 итераций правок;</li><li>Финальный микс.</li></ul><p><strong>Цены:</strong> от 4 990 ₽.</p>'},
+  writing:{t:'Текст на заказ',c:'<p>Команда гострайтеров создаст текст:</p><ul><li>Полное погружение в стиль клиента;</li><li>Куплеты, припевы, бридж;</li><li>Демо-запись;</li><li>Правки по необходимости.</li></ul><p><strong>Цены:</strong> от 9 990 ₽/трек.</p>'},
+  promo:{t:'Продвижение артиста',c:'<p>Комплексное продвижение:</p><ul><li>Таргетированная реклама;</li><li>Поиск и анализ ЦА;</li><li>Размещение в плейлистах;</li><li>Личный менеджер + ежедневные отчёты.</li></ul><p><strong>Цены:</strong> Таргет — от 14 990 ₽/мес | Плейлисты — от 4 990 ₽.</p>'},
+  dist:{t:'Дистрибуция трека',c:'<p>Официальный релиз на все платформы:</p><ul><li>Spotify, Apple Music, YouTube Music;</li><li>ВК Музыка, Яндекс Музыка, SberZvuk;</li><li>100+ других сервисов;</li><li>Роялти-выплаты и отчёты.</li></ul><p><strong>Цены:</strong> от 1 990 ₽. Сроки: 5–14 дней.</p>'},
+  radio:{t:'Ротация на радио',c:'<p>Твой трек на WAVECLUB RADIO:</p><ul><li>Эфир 24/7;</li><li>Возможность прямых эфиров;</li><li>Статистика прослушиваний;</li><li>Упоминание в соцсетях лейбла.</li></ul><p><strong>Цены:</strong> от 4 990 ₽/неделю.</p>'}
+};
+$$('[data-detail]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const d=details[btn.dataset.detail]; if(!d) return;
+    let ex=$('#detModal'); if(ex) ex.remove();
+    const m=document.createElement('div');
+    m.id='detModal'; m.className='modal open';
+    m.innerHTML=`<div class="modal-bg" id="detBg"></div><div class="modal-box"><button class="modal-x" id="detX">✕</button><img src="https://raw.githubusercontent.com/mrgrayyooo/wcm/refs/heads/main/logo.png" width="44" style="margin:0 auto 14px;display:block;border-radius:50%;"><h3 class="modal-title">${d.t}</h3><div style="font-size:.86rem;color:#aaa;line-height:1.75;margin-bottom:20px;">${d.c}</div><button class="btn-red btn-full" id="detBook">Заказать</button></div>`;
+    // inject list styles
+    const s=document.createElement('style'); s.textContent='#detModal ul{padding-left:18px;margin:10px 0}#detModal li{margin-bottom:4px}#detModal strong{color:#fff}';
+    document.head.appendChild(s);
+    document.body.appendChild(m); document.body.classList.add('locked');
+    $('#detX').addEventListener('click',()=>{ m.remove(); document.body.classList.remove('locked'); });
+    $('#detBg').addEventListener('click',()=>{ m.remove(); document.body.classList.remove('locked'); });
+    $('#detBook').addEventListener('click',()=>{ m.remove(); document.body.classList.remove('locked'); openModal('modal-booking'); preselect(d.t); });
+  });
+});
+</script>
+<script>
+const modal = document.getElementById('modal-booking');
+const closeBtn = document.getElementById('closeBooking');
+const bg = document.getElementById('mbg');
+
+// закрытие по крестику
+closeBtn?.addEventListener('click', () => {
+  modal.classList.remove('open');
+  document.body.classList.remove('locked');
+});
+
+// закрытие по фону
+bg?.addEventListener('click', () => {
+  modal.classList.remove('open');
+  document.body.classList.remove('locked');
+});
+</script>
+<script>
+document.querySelectorAll('.openBooking').forEach(btn => {
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    openModal('modal-booking');
+  });
+});
 </script>
 </body></html>
