@@ -1053,7 +1053,12 @@ select.minput option{background:var(--bg2);color:var(--txt)}
       </div>
     </div>
   </div>
-</footer><script>
+</footer>
+<script>
+function $(s){ return document.querySelector(s); }
+function $$(s){ return document.querySelectorAll(s); }
+</script>
+<script>
 (function(){
   var nav=document.getElementById('navbar');
   function run(){ if(nav) nav.classList.toggle('scrolled',window.scrollY>60); }
@@ -1109,7 +1114,7 @@ select.minput option{background:var(--bg2);color:var(--txt)}
   document.querySelectorAll('.pcard-action').forEach(function(btn){
     btn.addEventListener('click', function(e){
       e.stopPropagation();
-      window.open('https://t.me/waveclubmedia_bot','_blank');
+      openModal('modal-booking');
     });
   });
 })();
@@ -1244,6 +1249,14 @@ document.querySelectorAll('.openBooking').forEach(btn => {
     e.preventDefault();
     openModal('modal-booking');
   });
+});
+</script>
+<script>
+document.querySelectorAll('.pcard-order').forEach(function(btn) {
+	btn.addEventListener('click', function(e) {
+		e.preventDefault();
+		openModal('modal-booking');
+	});
 });
 </script>
 </body></html>
